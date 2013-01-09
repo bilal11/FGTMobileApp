@@ -2,13 +2,14 @@
 var imageURI;
 var picture_of_event_id;
 var fbDomainName;
-
+var app_id = "455419371188015"; // FGT App
+var app_secret = "109cce03082a0e4191081df21a498268"; // FGT App
 
 function authenticate(){
     var client_browser = window.plugins.childBrowser;
-    var my_client_id = "410323929009950", my_redirect_uri = "https://www.facebook.com/connect/login_success.html", my_type = "user_agent", my_display = "touch";
+    var my_redirect_uri = "https://www.facebook.com/connect/login_success.html", my_type = "user_agent", my_display = "touch";
     var authorize_url = "https://graph.facebook.com/oauth/authorize?";
-    authorize_url += "client_id=" + my_client_id;
+    authorize_url += "client_id=" + app_id;
     authorize_url += "&redirect_uri=" + my_redirect_uri;
     authorize_url += "&display=" + my_display;
     authorize_url += "&scope=read_stream,publish_stream,offline_access,publish_checkins"
@@ -25,14 +26,13 @@ function facebookLocChanged(loc){
 
     if (loc.indexOf("https://www.facebook.com/connect/login_success.html") > -1) {
         var fbCode = loc.match(/code=(.*)$/)[1]
-        console.log('https://graph.facebook.com/oauth/access_token?client_id=410323929009950&client_secret=6bdf1d312a3187fee5af8163b25a3fc4&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode);
-        //        $.support.cors = true;
+        console.log('https://graph.facebook.com/oauth/access_token?client_id='+app_id+'&client_secret='+app_secret+'&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode);
+//       	$.support.cors = true;
         $.ajax({
-            url: 'https://graph.facebook.com/oauth/access_token?client_id=410323929009950&client_secret=6bdf1d312a3187fee5af8163b25a3fc4&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode,
+            url: 'https://graph.facebook.com/oauth/access_token?client_id='+app_id+'&client_secret='+app_secret+'&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode,
             data: {},
             success: function(data, status){
                 window.localStorage.setItem("facebook_token", data.split("=")[1]);
-				window.localStorage.setItem("access_token", data.split("=")[1]);
                 window.plugins.childBrowser.close();
 //                alert("in success");
                 initialize_facebook();
@@ -48,7 +48,7 @@ function facebookLocChanged(loc){
 }
 
 function initialize_facebook(){
-	$(".fb_connect img").attr("src","images/ajax-loader.gif");
+//	$(".fb_connect img").attr("src","images/ajax-loader.gif");
 	var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_token');
 	$.getJSON(url, function(data){
 		window.localStorage.setItem("facebook_id", data.id);
