@@ -6,26 +6,37 @@
 ----                                                 coded by: Umer Hassam
 ---->
 <html> 
-   <head> 
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<head> 
+	   <meta charset="utf-8">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	   <title> </title> 
+	
+	   <link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.2.0.css"/>
+	   <link rel="stylesheet"  href="css/styles.css"/>
+	   
+	   <script src="includes/jquery.js"></script>
+	   <script src="includes/jquery.mobile-1.2.0.min.js"></script>
+	   <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+	   
+	   <script type="text/javascript" src="childbrowser_and.js" charset="utf-8"></script>
+	   <script type="text/javascript" src="fbAuthenticator.js"></script>
+	   <script type="text/javascript" src="fgtLogic.js"></script>
+	   <script type="text/javascript">
+			function onDeviceReady(){
+		   		console.log("device is ready");
+			    if (window.localStorage.getItem("loginStatus") == "loggedin") {
+			//		setTimeout('$(".fb_connect img").attr("src","images/ajax-loader.gif");',500);
+					startProcessing();
+			    }
+			}
+			document.addEventListener('deviceready', onDeviceReady(), false);	
+	   </script>
 
-   <title> </title> 
-
-   <link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.2.0.css"/>
-   <link rel="stylesheet"  href="css/styles.css"/>
-   
-   <script src="includes/jquery.js"></script>
-   <script src="includes/jquery.mobile-1.2.0.min.js"></script>
-   <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-   <script type="text/javascript" src="childbrowser_and.js" charset="utf-8"></script>
-   <script type="text/javascript" src="fbAuthenticator.js"></script>
-   <script type="text/javascript" src="fgtLogic.js"></script>
-
-</head>
+	</head>
 <body style="background-image: url('images/main_bg.png')">
     <div data-role="page" id="page0">
-    	<div id="facebook_connect"><a href="#"><font size="10"></>Connect with Facebook</font></a></div>
+    	<div id="facebook_connect"><a href="#"><font size="8"></>Connect with Facebook</font></a></div>
     </div>
 	
 	<div data-role="page" id="page1">

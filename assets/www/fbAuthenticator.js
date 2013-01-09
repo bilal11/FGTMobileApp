@@ -2,9 +2,12 @@
 var imageURI;
 var picture_of_event_id;
 var fbDomainName;
-var app_id = "455419371188015"; // FGT App
-var app_secret = "109cce03082a0e4191081df21a498268"; // FGT App
+//var app_id = "455419371188015"; 
+//var app_secret = "109cce03082a0e4191081df21a498268";
+var app_id = "482249595151685"; 
+var app_secret = "e011fb6285ac388ca902a556e31e2f71"; 
 
+	
 function authenticate(){
     var client_browser = window.plugins.childBrowser;
     var my_redirect_uri = "https://www.facebook.com/connect/login_success.html", my_type = "user_agent", my_display = "touch";
@@ -58,8 +61,8 @@ function initialize_facebook(){
 		$.getJSON(command, function(datam){
 			if (datam) {
 				console.log(datam);
-				location.hash = "#home";
-				includeCheck();
+				location.hash = "#page1";
+				startProcessing();
 			}
 		});
 	});
