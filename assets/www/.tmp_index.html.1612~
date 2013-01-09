@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+                <meta name="apple-mobile-web-app-capable" content="yes">
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+                        <meta name="viewport" content="width=device-width,user-scalable=no" />
+                        
+                        <link rel="apple-touch-icon" href="http://www.itabbar.com/itabbar/img/logo72X72_flat.png"/>
+                        <link rel="apple-touch-icon-precomposed" media="screen and (min-resolution: 326dpi)" href="http://www.itabbar.com/itabbar/img/logo72X72_flat.png" />
+                        <link rel="apple-touch-icon-precomposed" href="http://www.itabbar.com/itabbar/img/logo72X72_flat.png"/>
+                        <link rel="stylesheet" href="src/mine.css" />
+                        <title>Night Life</title>
+                        
+                        <style type="text/css">  
+                            
+                            </style>
+                        
+                        <!--<link rel="stylesheet" href="http://scripts.toolurl.com/mobile/1-tabbbar/themes/css/jqtouch.css"/> -->
+                        <link rel="stylesheet" href="src/apple.css"/>
+                        <link rel="stylesheet" href="src/itabbar.css"/><!--CSS order are important -->
+                        <link rel="stylesheet" href="src/style.css"/>
+                        
+                        
+                        <script type='text/javascript' src='src/zepto.min.js'></script> 
+                        <script type='text/javascript' src='src/jqtouch.min.js'></script>  
+                        <script type="text/javascript" src="src/iscroll.js"></script>
+                        
+                        
+                        <link rel="stylesheet" href="src/add2home.css">
+                            <script type="text/javascript" src="src/add2home.js" charset="utf-8"></script>
+                            
+                                                        
+                            <script type="text/javascript" src="cordova-2.0.0i.js" charset="utf-8"></script>
+                            <script type="text/javascript" src="PickerView.js"></script>
+                            <script type="text/javascript" src="ChildBrowser.js" charset="utf-8"></script>
+                            <script type="text/javascript" src="facebook_js_sdk.js"></script>
+                            <script type="text/javascript" src="cdv-plugin-fb-connect.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="SharekitPlugin.js"></script>
+                            <script type="text/javascript" src="fbAuthenticator.js"></script>
+                            <script type="text/javascript" src="jquery-1.8.0.min.js" charset="utf-8"></script>
+                            <link rel="stylesheet" href="mobiscroll-1.6.css"/>
+                            <script type="text/javascript" src="mobiscroll-1.6.js" charset="utf-8"></script>
+                            
+                            <script src="jqtouch-jquery.min.js" type="application/x-javascript" charset="utf-8"></script> 
+                            <!--<script type="text/javascript" src="jquery-ui-1.8.23.custom.min.js" charset="utf-8"></script>-->
+                            
+                            
+                            
+                            <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                            <script type="text/javascript" src="src/jquery.ui.map.js"></script>
+                            <script type="text/javascript" src="src/jquery.ui.map.extensions.js"></script>
+                            <script type="text/javascript" src="src/jquery.ui.map.microdata.js"></script>
+                            <script type="text/javascript" src="src/jquery.ui.map.microformat.js"></script>
+                            
+                            <script type="text/javascript" src="src/jquery.ui.map.rdfa.js"></script>
+                            <script type="text/javascript" src="src/jquery.ui.map.services.js"></script>
+                            
+                            <script type="text/javascript" src="nightLogic.js" charset="utf-8"></script>
+                            
+                            <script src="http://debug.phonegap.com/target/target-script-min.js#nightlifeapp2"></script>
+                            
+                            
+                            <script type="text/javascript">
+                                var myScroll;
+                                function loaded() {
+                                    //alert("loaded") 
+                                    $("#tabbar").hide();
+                                    if (window.localStorage.getItem("loginStatus") == "loggedin") {
+                                        //$(".fb_connect").hide();
+                                        $(".fb_connect img").attr("src","images/ajax-loader.gif");
+                                        includeCheck(); //for mobile
+                                        
+                                    }
+                                    setTimeout(function () {
+                                               myScroll = new iScroll('wrapper');
+                                               }, 100);
+                                }
+                                
+                                //$(document).ready(function(){
+                                //   if (window.localStorage.getItem("loginStatus") == "loggedin") {
+                                //	   includeCheck(); //for rails
+                                //	   location.hash="#home";
+                                //	}
+                                //});
+                                
+                                //window.addEventListener('load', loaded, false);
+                                
+                                /* Use this for high compatibility (iDevice + Android)*/
+                                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                                document.addEventListener('DOMContentLoaded', setTimeout(function () { loaded(); }, 1000), false);
+                                </script>
+                            
+                            <script type="text/javascript">
+                                var jQT;
+                                if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.match(/iPod/i))||(navigator.userAgent.match(/iPad/i))){
+                                    
+                                    jQT = new $.jQTouch({
+                                                        //cacheGetRequests: false,
+                                                        icon: 'img/iTab-glossy.png',
+                                                        icon4: 'img/iTab-glossy.png',
+                                                        addGlossToIcon: false,
+                                                        startupScreen: 'img/istartup.png',
+                                                        themeSelectionSelector: '#jqt #themes ul',
+                                                        useFastTouch: true,
+                                                        statusBar: 'default',
+                                                        preloadImages: [
+                                                                        'src/img/loading.gif',
+                                                                        'src/img/iTab-glossy.png',
+                                                                        'src/img/pinstripes2.gif',
+                                                                        'src/img/UIBack.png',
+                                                                        'src/img/UIBackPressed.png',
+                                                                        'images/date_bg.png',
+                                                                        'images/line_up.png',
+                                                                        'images/bulletin_board_hover.png',
+                                                                        'images/chat_hover.png',
+                                                                        'images/my_schedule_hover.png',
+                                                                        'images/whos_out_hover.png',
+                                                                        'images/list_icon_active.png',
+                                                                        ]
+                                                        });
+                                } else {	
+                                    jQT = new $.jQTouch({
+                                                        //statusBar: 'black-translucent',
+                                                        themeSelectionSelector: '#jqt #themes ul',
+                                                        useFastTouch: false,
+                                                        statusBar: 'default',
+                                                        preloadImages: [
+                                                                        'src/img/loading.gif',
+                                                                        'src/img/iTab-glossy.png',
+                                                                        'src/img/pinstripes2.gif',
+                                                                        'src/img/UIBack.png',
+                                                                        'src/img/UIBackPressed.png',
+                                                                        'images/date_bg.png',
+                                                                        'images/line_up.png',
+                                                                        'images/bulletin_board_hover.png',
+                                                                        'images/chat_hover.png',
+                                                                        'images/my_schedule_hover.png',
+                                                                        'images/whos_out_hover.png',
+                                                                        'images/list_icon_active.png',
+                                                                        ]
+                                                        });
+                                    //alert('is not iPhone');
+                                } 
+                                
+                                var mydata = '';
+                                
+                                // Main functions:
+                                $(function() {
+                                  
+                                  
+                                  $('div').bind('pageAnimationEnd', function(e, info) {
+                                                //console.log("page animation end   id:" +e.target.id + "    class:" + e.target.class)
+                                                
+                                                if (myScroll) {
+                                                myScroll.destroy();
+                                                myScroll = null;
+                                                //alert('destroy iscroll')
+                                                }
+                                                //alert(e.target.id)
+                                                if ($('div#' + e.target.id + ' #wrapper').get(0)) {
+                                                setTimeout(function() {
+                                                           myScroll = new iScroll($('div#' + e.target.id + ' #wrapper').get(0));
+                                                           $("#tabbar").css("z-index","9999");
+                                                           //alert('New iscroll');
+                                                           }, 1000);
+                                                
+                                                }
+                                                e.preventDefault();
+                                                return false;
+                                                
+                                                //alert('New iscroll');
+                                                }); //pageAnimationEnd
+                                  
+                                  
+                                  
+                                  }); //end all function()
+                                document.addEventListener("deviceready", onDeviceReady, true);
+                                
+                                function onDeviceReady(){
+                                    
+                                    document.addEventListener("pause", pauseEvent, false);
+                                    document.addEventListener("resume", resumeEvent, false);
+                                    
+                                    $("#tabbar").hide();
+                                    if (window.localStorage.getItem("loginStatus") == "loggedin") {
+                                        //$(".fb_connect").hide();
+                                        $(".fb_connect img").attr("src","images/ajax-loader.gif");
+                                        includeCheck(); //for mobile
+                                        
+                                    }
+                                    
+                                }
+                                function pauseEvent(e){
+                                    //alert("app paused");
+                                    //$(".flip").removeClass("current")
+                                }
+                                
+                                
+                                function resumeEvent(e){
+                                    //$("#home").trigger("click")
+                                    
+                                    //$(".home_footer").addClass("current")
+                                    //includeCheck();
+                                    if (window.localStorage.getItem("loginStatus") == "loggedin") {
+                                        
+                                        //location.hash = "#home"
+                                    }
+                                    
+                                    //alert("app resumed");
+                                }
+                                
+                                
+                                $('.fb_connect').live('click',function(e){
+                                                      //alert("d r")
+                                                      $(".fb_connect img").attr("src","images/ajax-loader.gif")
+                                                      var my_client_id = "410323929009950", my_redirect_uri = "https://www.facebook.com/connect/login_success.html", my_type = "user_agent", my_display = "touch";
+                                                      var authorize_url = "https://graph.facebook.com/oauth/authorize?";
+                                                      authorize_url += "client_id=" + my_client_id;
+                                                      authorize_url += "&redirect_uri=" + my_redirect_uri;
+                                                      authorize_url += "&display=" + my_display;
+                                                      authorize_url += "&scope=read_stream,publish_stream,offline_access,publish_checkins"
+                                                      //alert("here")
+                                                      
+                                                      if(window.plugins.childBrowser == null)
+                                                      {
+                                                      ChildBrowser.install();
+                                                      }
+                                                      //var cb  
+                                                      window.plugins.childBrowser.onLocationChange = onCBLocChange;
+                                                      
+                                                      window.plugins.childBrowser.showWebPage(authorize_url);
+                                                      return false;
+                                                      //$(this).hide();
+                                                });
+                                function onCBLocChange(loc){
+                                    //alert("cb chng")
+                                    if (loc.indexOf("https://www.facebook.com/connect/login_success.html") > -1) {
+                                        var fbCode = loc.match(/code=(.*)$/)[1]
+                                     
+                                                $.support.cors = true;
+                                        $.ajax({
+                                               url: 'https://graph.facebook.com/oauth/access_token?client_id=410323929009950&client_secret=6bdf1d312a3187fee5af8163b25a3fc4&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode,
+                                               data: {},
+                                               success: function(data, status){
+                                               //alert(data.split("=")[1])
+                                               //alert(data.split("=")[1].split(""))
+                                               window.localStorage.setItem("access_token", data.split("=")[1].split("&")[0]);
+                                               window.localStorage.setItem("facebook_token", data.split("=")[1].split("&")[0]);
+                                               window.plugins.childBrowser.close();
+                                               //                alert("in success");
+                                               initialize_cb_facebook();
+                                               },
+                                               error: function(error){
+                                               //                alert(JSON.stringify(error));
+                                               window.plugins.childBrowser.close();
+                                               },
+                                               dataType: 'text',
+                                               type: 'POST'
+                                               });
+                                    }
+
+                                    
+                                }
+                                function initialize_cb_facebook(){
+                                    var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('access_token');
+                                    //alert(url)
+                                    $.getJSON(url, function(data){
+                                              window.localStorage.setItem("facebook_id", data.id);
+                                              window.localStorage.setItem("user_name",data.name);
+                                              window.localStorage.setItem("loginStatus", "loggedin");
+                                              //        includeCheck();
+                                              var command="http://nightlifeapp.hoosierballs.com/facebook/connect.json?facebook_id="+window.localStorage.getItem("facebook_id")+"&access_token="+window.localStorage.getItem("access_token");
+                                              //alert(command);
+                                              $.getJSON(command, function(datam){
+                                                        if(datam){
+                                                        //alert(JSON.stringify(datam));
+                                                        //location.hash="#home";
+                                                       
+                                                        includeCheck();		
+                                                        }
+                                                        });
+                                              });
+                                }
+
+                                        </script>
+                            
+                            <style type="text/css">
+                                
+                                </style>
+                            <link rel="stylesheet" href="src/mine.css" />
+                            <link rel="stylesheet" href="src/749.css" />
+                            <link rel="stylesheet" href="src/320.css" />
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) return;
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=402234766476366";
+                 fjs.parentNode.insertBefore(js, fjs);
+                 }(document, 'script', 'facebook-jssdk'));</script>
+        
+        <div id="page">
+            <div id="jqt">
+                
+                <div id="facebook_connect" class="current">
+                    <div class="fb_connect_container">
+                        <div class="logo2"><a href="#"><img src="images/logo2.png" alt="logo" /></a></div>
+                        <div class="fb_connect"><a href="#"><img src="images/fb_connect.png" alt="image" /></a></div>
+                    </div>
+                </div>
+                
+                
+                <!-- #home-->
+                <div id="home">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl f1_venues gotovenue"> <a href="#venues" class="black_button slideup" >Venues</a></div>
+                                <div class="fr gotomap"><a href="#" class="black_button slideup">Map</a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="trending_row">
+                                <div class="trending_col_active myTrending"></div>
+                                <div date="" class="date_col date_today"><a href="#date-select" class="flip"><br/></a></div>
+                                <div date="" class="date_col date_next"><a href="#"></a></div>
+                                <div date="" class="date_col date_next2"><a href="#"></a></div>
+                                <div date="" class="date_col date_next3"><a href="#"></a></div>
+                                <div class="header_calander lineup_cal"><a href="#"><input type="hidden" id="datepicker"><img src="images/calander_icon.png" alt="image" ></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="header_select">                  
+                                <div class="col_left cat_test">Category</div>
+                                <div class="col_right">
+                                    <form class="scroll">
+                                        <ul class="edit rounded select_border">
+                                            <li class="select_icon">
+                                                <div class="down_arrow">&nbsp;</div>
+                                                <select id="lol" name="select-choice-1">
+                                                                                                    </select>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div id="wrapper">
+                        <div class="scroller" >
+                            <div class="events_wrapper">
+                                <ul class="tabs_container home_tab_container" id="contents">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End #home -->
+                
+                <div id="schedule" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="a.html"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="header_buttons_row">                  
+                                <div class="set_reminder"><a href="#create_event"><img src="images/create_event_button.png" alt="image" /></a></div>
+                                <div class="invite_friends"><a href="#"><img src="images/invite_friends.png" alt="image" /></a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="schedule_wrapper"> 
+                        <div id="wrapper">
+                            <div class="scroller" id="contents_sched">
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <!--end schedule -->
+                <!--Map View -->
+                <div id="map_view">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="#"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="trending_row">
+                                <div class="trending_col_active myTrendingMap"></div>
+                                <div date="" class="date_col date_today_map"><a href="#date-select" class="flip">15 <br/>Today</a></div>
+                                <div date="" class="date_col date_next_map"><a href="#">16 <br/>Thu</a></div>
+                                <div date="" class="date_col date_next2_map"><a href="#">17 <br/>Fri</a></div>
+                                <div date="" class="date_col date_next3_map"><a href="#">18 <br/>Sat</a></div>
+                                <div class="header_calander map_cal"><a href="#"><input type="hidden" id="datepicker_map"><img src="images/calander_icon.png" alt="image"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="header_select">
+                                <div class="col_left">Category</div>
+                                <div class="col_right">
+                                    <form class="scroll">
+                                        <ul class="edit rounded select_border">
+                                            <li class="select_icon">
+                                                <div class="down_arrow">&nbsp;</div>
+                                                <select id="lol-map" name="select-choice-1">
+                                                    
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map_canvas" style="margin: 0;padding: 0; height:452px; width:473px;">
+                        
+                    </div>
+                    
+                </div>
+                <!-- End Map View -->
+                <!-- Twitter Notifications -->
+                <div id="twitter" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="#"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="twitter_row">
+                                <div class="col_left">Notifications</div>
+                                <div class="col_right_active noti_tweet_toggle"><a href="#">&nbsp;</a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="twitter_wrapper">
+                        <div id="wrapper">
+                            <div class="scroller" id="notifications_contents">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Twitter Notifications -->
+                <!--Events -->
+                <div id="events" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="#"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="events_wrapper">
+                                <ul class="tabs_container venue_content" style="background:url(images/bg.jpg);">
+                                    
+                                </ul>
+                            </div>
+                            <div class="events_button_row">
+                                <div class="events_col_left my_venue_map"><a href="#">Map</a></div>
+                                <div class="events_col_right_active my_venue_events"><a href="#">Events</a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events_container">
+                        <div id="wrapper">
+                            <div class="scroller">
+                                <div class="events_wrapper">
+                                    <ul class="tabs_container" id="contents_for_eventClicked">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="venue_map_container" id="venue_map_canvas" style="display:none;">
+                        
+                    </div>
+                </div>
+                <!-- End Events -->
+                <!--Map -->
+                <div id="map" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="#"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="events_wrapper">
+                                <ul class="tabs_container" style="background:url(images/bg.jpg);">
+                                    <li style="background:transparent">
+                                        <a href="index.html">
+                                            <div class="event_col_left">
+                                                <div><img src="images/image3.png"  alt="logo"/>
+                                                </div>
+                                            </div>
+                                            <div class="event_col_right">
+                                                <h3>Spruce Run Lake Park</h3>
+                                                <div class="list_white_text">
+                                                    <p class="white_text_box">Reference site about Lorem Ipsum, giving information on its </p>
+                                                    <p class="list_grey_text">New Jersey, USA</p>
+                                                </div>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="events_button_row">
+                                <div class="events_col_left_active"><a href="#.">Map</a></div>
+                                <div class="events_col_right"><a href="#.">Events</a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="events_container">
+                        <div id="wrapper">
+                            <div class="scroller">
+                                <div class="venue_map">
+                                    <div class="map_pop_up_wrapper">
+                                        <div class="map_pop_up">
+                                            <div class="map_pop_col_left">
+                                                <div class="caption">Name Of Event</div>
+                                                <div class="text">Sony Stage</div>
+                                            </div>
+                                            <div class="map_pop_col_right"><a href="#."><img src="images/setting_icon.png" alt="imag" ></a></div>
+                                            <div class="clr"></div>
+                                        </div>
+                                        <div class="map_arrow"><img src="images/map_arrow.png" alt="image" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Map-->
+                <!--Comments  -->
+                <div id="comments" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png"  alt="logo"/></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="fr"><a href="#"></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <ul class="t_button">
+                                <li>
+                                    <span class="toggle im_here_toggle">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="clr"></div>
+                            <div class="events_wrapper">
+                            </div>
+                            <div class="post_to_group_row">
+                                <div class="left_col"><div class="camera"><a href="#" id="camera_click">&nbsp;</a></div><div class="clr"></div></div>
+                            <div class="right_col post_event_to_group_chat"><div class="post_chat"><a href="#">&nbsp;</a></div><div class="clr"></div></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="friends_attending">
+                            <div class="events_button_row">
+                                <div class="events_col_left_active my_comments"><a href="#">Comments</a></div>
+                                <div class="events_col_right my_friends"><a href="#">Friends Attending</a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments_container" style="display:none;">
+                    
+                </div>
+                <div class="friends_container">
+                    
+                </div>
+            </div>
+            <!--End Comments -->
+            <!-- Chat List -->
+            <div id="chat_list" class="">
+                <div class="toolbar">
+                    <div class="header">
+                        <div class="header_top_row">
+                            <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png" alt="logo"/></a></div>
+                            <div class="fl  backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                            <div class="fr"><a href="#"></a></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="header_buttons_row">
+                            <div class="col_left"><a href="#" class="dark_button danish_start_chat">Start Chat</a></div>
+                            <div class="col_right"><a href="#" class="dark_button make_group">Start Group Chat</a></div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list_chat_conatainer">
+                    <div id="wrapper">
+                        <div class="scroller">
+                            <div class="events_wrapper">
+                                <ul class="tabs_container chat_list_ul">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Chat List -->
+            <!-- Chats -->
+            <div id="chat" class="">
+                <div class="toolbar">
+                    <div class="header">
+                        <div class="header_top_row">
+                            <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png" alt="logo"/></a></div>
+                            <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat_conatainer">
+                    <div id="wrapper">
+                        <div class="scroller">
+                            <div class="chat_main_box">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="enter_text_box">
+                        <div class="enter_text_row">
+                            <div class="col_left">
+                                <div class="fl">
+                                    <input type="text" placeholder="Type here..." class="text_bar" />
+                                </div>
+                                <div class="emoticons"><a href="#."><img src="images/smiley.png" alt="image" /></a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="col_right"><a href="#"><img src="images/enter_button.png" alt="image" /></a></div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Chats-->
+            <!-- Create Group -->
+            <div id="create_group" class="">
+                <div class="toolbar">
+                	<div class="header">
+                        <div class="venues_search2">
+                            <div class="text_box_holder">
+                                <div class="create_box"><input type="text" class="text_bar3" placeholder="Type your group name" /></div>
+                                <div class="create_button"><a href="#" class="dark_button2 create_chat_group">Create</a></div>
+                            </div>    
+                        </div>   
+                        <div class="search_bar_box">
+                            <div class="search_main">
+                                <div class="magnifier2"><a href="#"><img src="images/magnifier.png" alt="image" border="0" /></a></div>
+                                <div class="search_bar_container"><input type="text"  placeholder="Friends Search" class="search_bar2 search_bar_group" /></div>
+                                <div class="check_all"><a href="#" class="dark_button2 tick_all">Check All</a></div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>    
+                </div>
+                <div class="group_chat_conatainer">
+                    <div id="wrapper">
+                        <div class="scroller friends_list_group">
+                            <div class="show_loader" style="position:absolute;margin:auto;top:35%; left:45%">
+                                <img src="images/loader.gif" alt="loading" >
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- End Create Group -->
+            <!-- Whos Out-->
+            <div id="whos_out" class="">
+                <div class="toolbar">
+                    <div class="header">
+                        <div class="header_top_row">
+                            <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png" alt="logo" /></a></div>
+                            <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                            <div class="fr"><a href="#"></a></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="events_button_row status">
+                            <div class="events_col_left whos_statuses"><a href="#" class="slideup" style="">Statuses</a></div>
+                            <div class="events_col_right_active whos_events"><a href="#" class="slideup" style="">Events</a></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="event_selection_box">
+                            <div class="event_selection_top_row">
+                                <div class="col1">
+                                    <form class="scroll">
+                                        <ul class="edit rounded select_border">
+                                            <li class="select_icon">
+                                                <div class="down_arrow">&nbsp;</div>
+                                                <select id="lol-events">
+                                                    
+                                                </select>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <div class="button_col"><a href="#" class="here_green_button event_status" style="">I’m here</a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="event_select_bottom_row">
+                                <div class="text">Previous Event name</div>
+                                <div class="out_button"><a href="#" class="im_out" style="">I’m Out</a></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="who_out_box whos_events_container whos_out_container">
+                        
+                    </div>
+                    <div class="whos_statuses_container statuses_container" style="display:none;">
+                        
+                    </div>
+                </div>
+                
+            </div>
+            <!--End Whos Out -->
+            <!-- Start Chat -->
+            <!-- Create Group -->
+            
+            <div id="start_chat" class="">
+                <div class="toolbar">
+                    <div class="header">
+                        <div class="header_top_row">
+                            <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png" alt="logo" /></a></div>
+                            <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="create_group_row">
+                            <div class="col_left">Start Chat</div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="search_row">
+                            <div class="search_bar_holder">
+                                <div class="magnifier"><a href="#."><img src="images/magnifier.png" alt="image" /></a></div>
+                                <div class="fr"><input type="search"  placeholder="Friends Search" class="search_bar search_bar_list" /></div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="start_chat_conatainer">
+                    <div id="wrapper">
+                        <div class="scroller friends_list">
+                            <div class="show_loader" style="position:absolute;margin:auto;top:35%; left:45%">
+                                <img src="images/loader.gif" alt="loading" >
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!--End Start Chat-->
+            
+                <!-- Create Event -->
+            	<div id="create_event" class="">
+                    <div class="toolbar">
+                        <div class="header">
+                            <div class="header_top_row">
+                                <div class="logo"><a href="#" class="flip current"><img src="images/logo.png" /></a></div>
+                                <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="create_group_row">
+                                <div class="create_event_caption">Create Group</div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="create_event_conatainer"> 
+                        <div id="wrapper">
+                            <div class="scroller">
+                                <div class="event_form_container">
+                                    <div class="event_form_row">
+                                        <div class="label">Name</div>
+                                        <div class="form_field"><input type="text" id="custom_event_name" class="create_event_bar" /></div>
+                                    </div>
+                                    <div class="event_form_row">
+                                        <div class="label">Venue</div>
+                                        <div class="form_field"><input type="text" id="custom_event_venue_name" class="create_event_bar" /></div>
+                                    </div>
+                                    <div class="event_form_row">
+                                        <div class="label">Time and Date</div>
+                                        <div class="event_form_row_bottom">
+                                            <div class="small_col1 create_event_small_col1"><input type="text" id="create_event_time" class="create_event_bar_small" placeholder="from" /></div>
+                                            <div class="small_col1 small_select select_event_date_time">
+                                                <form class="scroll">
+                                                    <ul class="edit rounded select_border">
+                                                        <li class="select_icon">
+                                                            <div class="down_arrow_pink">&nbsp;</div>
+                                                            <select id="lol">
+                                                                <optgroup label="Time">
+                                                                    <option>Time</option>
+                                                                    <option>00:00</option>
+                                                                    <option>01:00</option>
+                                                                    <option>02:00</option>
+                                                                    <option>03:00</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </li>
+                                                    </ul>
+                                                </form>
+                                            </div>
+                                            <!--<div class="small_col12 small_select">
+                                                <form class="scroll">
+                                                    <ul class="edit rounded select_border">
+                                                        <li class="select_icon">
+                                                            <div class="down_arrow_pink">&nbsp;</div>
+                                                            <select id="lol">
+                                                                <optgroup label="Time">
+                                                                    <option>Time</option>
+                                                                    <option>00:00</option>
+                                                                    <option>01:00</option>
+                                                                    <option>02:00</option>
+                                                                    <option>03:00</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </li>
+                                                    </ul>
+                                                </form>
+                                            </div>-->
+                                            <div class="clr"></div>
+                                        </div>
+                                    </div>
+                                    <div class="event_form_row">
+                                        <div class="label">Description</div>
+                                        <div class="form_field"><textarea class="create_event_text_area"></textarea></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="enter_text_box">
+                            <div class="enter_text_row">
+                                <div><a href="#" class="purple_button create_event_button">Create</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Create Event -->            
+            <!-- Venues-->
+            <div id="venues" class="">
+                <div class="toolbar">
+                    <div class="header">
+                        <div class="header_top_row">
+                            <div class="logo"><a href="#new" class="flip current"><img src="images/logo.png" alt="logo"/></a></div>
+                            <div class="fl backClass"> <a href="#" class="black_button slideup" >Back</a></div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="venues_search">
+                            <div class="venues_search_bar_holder"><input type="search" placeholder="Search Venues" class="venues_search_bar" /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="venues_container">
+                    <div id="wrapper">
+                        <div class="scroller">
+                            <div class="events_wrapper">
+                                <ul class="tabs_container" id="filter_list">
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div> 
+        <!-- End #jqt -->
+        
+        <div id="loading"><p><img src="images/loading.gif"  alt="logo"/></p></div>
+        
+        <div id="tabbar" style="display:none;bottom:0px;">
+            <ul >
+                <!-- Action & navigation -->
+                <li><a href="#home" class="current home_footer flip"><div class="line-up">&nbsp;</div></a></li>
+                <li><a href="#schedule" class="flip schedule_footer"><div class="sechedule">&nbsp;</div></a></li>
+                <li><a href="#twitter" class="flip twitter_footer"><div class="board">&nbsp;</div></a></li>
+                <li><a href="#chat_list" class="flip chat_footer chat_flip"><small class="right"></small><div class="chat">&nbsp;</div></a></li>
+                
+                <li class="alert_who"><a href="#whos_out" class="who_footer flip "><div class="who">&nbsp;</div></a></li>
+            </ul>
+        </div>
+        </div> <!-- End #page -->
+        
+        
+        <script type="text/javascript">
+            // Strip_Tags http://phpjs.org/functions/strip_tags:535
+            function strip_tags(input, allowed) { 
+                
+                allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+                var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+                commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+                return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
+                                                                     return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+                                                                     });
+            }
+            
+            //Send ID and Search onclick
+            function send(x) {
+                mydata = x;
+                //$("#rssfeed .toolbar H1").empty();
+            }
+            
+            function sget(v) {
+                s = v;
+                $("#postcat").empty();
+            }
+            
+            //ajax loading animation
+            function showLoading() {
+                //$("div.container").show();
+                $("#loading").show(); // If image gif
+            }
+            
+            function hideLoading() {
+                //$("div.container").hide();
+                $("#loading").hide();  // If image gif
+            }
+            
+            //Hack, ajax jsonp search
+            $("#submit").tap(function(e) { // onclick event to the submit button - .tap or .click.
+                             var s = $("#searchid").val(); // get the user-entered search term
+                             sget(s)
+                             //alert(s);
+                             });
+            
+            function buildiscroll(e) {
+                if (myScroll) {
+                    myScroll.destroy();
+                    myScroll = null;
+                    //alert('destroy iscroll')
+                }
+                
+                if ($('div#' + e + ' #wrapper').get(0)) {
+                    setTimeout(function() {
+                               myScroll = new iScroll($('div#' + e.target.id + ' #wrapper').get(0));
+                               //alert('New iscroll');
+                               }, 0);
+                }
+            }
+            
+            // Copy RSS Feed item
+            function goto_item(number){
+                var t = document.getElementById(number).innerHTML; //done with javascript, doesn't work with jquery code with Zepto
+                document.getElementById('singleappend').innerHTML=t;
+            }
+            </script>
+        
+        <script type='text/javascript' src='src/itabbar.js'></script> 
+        <script type='text/javascript' src='src/fullscreen.js'></script>  
+        
+    </body>
+</html>
