@@ -1,0 +1,24 @@
+.news_feed_content_c1 {
+float: left;
+width: 20%;
+margin-left: 10px;
+}
+
+.news_feed_content_c1r1 img {
+width: 60px;
+height: 75px;
+}
+
+.news_feed_content_c3r2 img {
+width: 60px;
+height: 55px;
+}
+.news_feed_content_c3 {
+float: left;
+width: 20%;
+}
+
+.news_feed_content_c2 {
+float: left;
+width: 56%;
+}
