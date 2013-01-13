@@ -2,10 +2,10 @@
 var imageURI;
 var picture_of_event_id;
 var fbDomainName;
-//var app_id = "455419371188015"; 
-//var app_secret = "109cce03082a0e4191081df21a498268";
-var app_id = "482249595151685"; 
-var app_secret = "e011fb6285ac388ca902a556e31e2f71"; 
+var app_id = "455419371188015"; 
+var app_secret = "109cce03082a0e4191081df21a498268";
+// var app_id = "482249595151685"; 
+//var app_secret = "e011fb6285ac388ca902a556e31e2f71"; 
 
 	
 function authenticate(){
@@ -41,7 +41,7 @@ function facebookLocChanged(loc){
                 initialize_facebook();
             },
             error: function(error){
-//                alert(JSON.stringify(error));
+                console.log(JSON.stringify(error));
                 window.plugins.childBrowser.close();
             },
             dataType: 'text',
@@ -52,17 +52,25 @@ function facebookLocChanged(loc){
 
 function initialize_facebook(){
 //	$(".fb_connect img").attr("src","images/ajax-loader.gif");
+	console.log("in initialize_facebook");
 	var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_token');
 	$.getJSON(url, function(data){
 		window.localStorage.setItem("facebook_id", data.id);
 		window.localStorage.setItem("user_name", data.name);
 		window.localStorage.setItem("loginStatus", "loggedin");
-		var command = fbDomainName + "/facebook/connect.json?facebook_id=" + window.localStorage.getItem("facebook_id") + "&access_token=" + window.localStorage.getItem("facebook_token");
-		$.getJSON(command, function(datam){
-			if (datam) {
-				console.log(datam);
-				location.hash = "#page1";
+		console.log("access_token = "+window.localStorage.getItem("facebook_token"));
+		console.log("facebook_id = "+window.localStorage.getItem("facebook_id"));
+		console.log("user_name = "+window.localStorage.getItem("user_name"));
+		console.log("login Status = "+window.localStorage.getItem("loginStatus"));
+		var url = domainName+'/register_user.json?facebook_id='+window.localStorage.getItem("facebook_id")+'&userName='+window.localStorage.getItem("user_name")+'&fb_access_token='+window.localStorage.getItem("facebook_token");
+		$.getJSON(url, function(data){
+			if(data=='user created successfully'||data=='user already exists'){
 				startProcessing();
+			}else{
+				window.localStorage.setItem("facebook_id", "");
+				window.localStorage.setItem("user_name", "");
+				window.localStorage.setItem("loginStatus", "");
+				alert("Unfortunately, User could not created. Please try again by restarting application.");
 			}
 		});
 	});
