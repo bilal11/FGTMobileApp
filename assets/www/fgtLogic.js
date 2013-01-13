@@ -6,21 +6,37 @@ var calDate = null;
 var chat_count = 0;
 var sending_time = 0;
 var domainName = "http://morning-scrubland-4310.herokuapp.com";
+fbDomainName = domainName;
 
 
 function startProcessing(){
 	if(window.localStorage.getItem("loginStatus")=="loggedin"){
-		location.hash = "#page1";
-		console.log("access_token = "+window.localStorage.getItem("facebook_token"));
-		console.log("facebook_id = "+window.localStorage.getItem("facebook_id"));
-		console.log("user_name = "+window.localStorage.getItem("user_name"));
-		console.log("login Status = "+window.localStorage.getItem("loginStatus"));
+		//alert("in processing");
+		window.location.href = "#newsfeed";
+		//console.log("access_token = "+window.localStorage.getItem("facebook_token"));
+		//console.log("facebook_id = "+window.localStorage.getItem("facebook_id"));
+		//console.log("user_name = "+window.localStorage.getItem("user_name"));
+		//console.log("login Status = "+window.localStorage.getItem("loginStatus"));
+		var url = domainName+'/get_my_posts.json?facebook_id='+window.localStorage.getItem("facebook_id");
+		$.getJSON(url, displayAllPosts);
 	}
 }
 
 $("#facebook_connect").live("click", function(e){
 	authenticate();
 });
+
+function displayAllPosts(data){
+	alert(JSON.stringify(data));
+	console.log(JSON.stringify(data));
+//	var event_start_date = data.fieldByName('start_time');
+//	var event_end_date = data.fieldByName('end_time');
+//	var currDate = getDate(event_start_date);
+//   currDate = getChangedDateView(currDate);
+//    currDate = currDate.split(",")[1];
+//	var eventTime = getTimeFormatted(getTime(event_start_date)) + ' - ' + getTimeFormatted(getTime(event_end_date)) + "," + currDate;
+}
+
 
 function getCurrentMonthName(){
 	var d = new Date();
