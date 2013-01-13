@@ -9,6 +9,7 @@ var app_secret = "109cce03082a0e4191081df21a498268";
 
 	
 function authenticate(){
+	
     var client_browser = window.plugins.childBrowser;
     var my_redirect_uri = "https://www.facebook.com/connect/login_success.html", my_type = "user_agent", my_display = "touch";
     var authorize_url = "https://graph.facebook.com/oauth/authorize?";
@@ -41,7 +42,7 @@ function facebookLocChanged(loc){
                 initialize_facebook();
             },
             error: function(error){
-                console.log(JSON.stringify(error));
+                console.log("error=============="+JSON.stringify(error));
                 window.plugins.childBrowser.close();
             },
             dataType: 'text',

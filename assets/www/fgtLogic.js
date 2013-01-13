@@ -11,12 +11,7 @@ fbDomainName = domainName;
 
 function startProcessing(){
 	if(window.localStorage.getItem("loginStatus")=="loggedin"){
-		//alert("in processing");
 		window.location.href = "#newsfeed";
-		//console.log("access_token = "+window.localStorage.getItem("facebook_token"));
-		//console.log("facebook_id = "+window.localStorage.getItem("facebook_id"));
-		//console.log("user_name = "+window.localStorage.getItem("user_name"));
-		//console.log("login Status = "+window.localStorage.getItem("loginStatus"));
 		var url = domainName+'/get_my_posts.json?facebook_id='+window.localStorage.getItem("facebook_id");
 		$.getJSON(url, displayAllPosts);
 	}
@@ -27,13 +22,46 @@ $("#facebook_connect").live("click", function(e){
 });
 
 function displayAllPosts(data){
-	alert(JSON.stringify(data));
-	console.log(JSON.stringify(data));
-//	var event_start_date = data.fieldByName('start_time');
-//	var event_end_date = data.fieldByName('end_time');
-//	var currDate = getDate(event_start_date);
-//   currDate = getChangedDateView(currDate);
-//    currDate = currDate.split(",")[1];
+	var mhtml = '';
+	for(var i=0; i<data.length; i++){
+		var poster_name = data[i].poster_name;
+		var post_text = data[0].text;
+		if(post_text==null||post_text==""||data[i].status_type=="approved_friend"){
+			post_text = data[i].story;
+		}
+		var shared_pic = data[i].picture_url;
+		var post_time = data[i].created_at;
+		var total_comments = data[i].total_comments;
+		var total_likes = data[i].total_likes;
+		var user_image = "https://graph.facebook.com/"+data[i].poster_fb_id+"/picture";
+		console.log("user_image-------------------------"+user_image);
+		var formatedTime = getDate(post_time);
+	  	formatedTime = getChangedDateView(formatedTime);
+	   	formatedTime = formatedTime.split(",")[1];
+	   	post_time = formatedTime+", "+getTimeFormatted(getTime(post_time));
+	   
+	   	
+	   	mhtml+='<a href="#photodetail" data-transition="slide">';
+        mhtml+='<li class="news_feed_content_li">';
+        mhtml+='<div class="news_feed_content_seperator"></div>';
+        mhtml+='<div class="news_feed_content_container">';
+        mhtml+='<div class="news_feed_content_c1">';
+		mhtml+='<div class="news_feed_content_c1r1">';
+		mhtml+='<img src="'+user_image+'"></div></div>';
+		mhtml+='<div class="news_feed_content_c2">';
+		mhtml+='<div class="news_feed_content_c2r1">'+poster_name+'</div>';
+		mhtml+='<div class="news_feed_content_c2r2">'+post_text+'</div>';
+		mhtml+='<div class="news_feed_content_c2r3">';
+		mhtml+='<img src="images/like_btn.png">'+total_likes+'<img src="images/msg_btn.png">'+total_comments+'</div></div>';
+		mhtml+='<div class="news_feed_content_c3">';
+		mhtml+='<div class="news_feed_content_c3r1">'+post_time+'</div>';
+		mhtml+='<div class="news_feed_content_c3r2">';
+		mhtml+='<img src="'+shared_pic+'"></div></div></div>';
+		console.log("shared_pic-------------------"+shared_pic);
+		mhtml+='<div class="clr"></div></li></a>';
+		
+	}
+	$(".news_feed_content_ul").html(mhtml);
 //	var eventTime = getTimeFormatted(getTime(event_start_date)) + ' - ' + getTimeFormatted(getTime(event_end_date)) + "," + currDate;
 }
 

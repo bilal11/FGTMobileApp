@@ -46,7 +46,7 @@ body {
 
 .like_button{
     float:right;
-    width:60px;
+    width:40px;
     border:0px;
     border-radius:0px;
     padding:0px;
@@ -161,9 +161,10 @@ body {
 }
 .news_feed_content{
     width:100%;
+    text-decoration:none;
 }
 .news_feed_content ul{
-    padding-left:10px;
+    padding-left:5px;
     padding-right:10px;
 }
 .news_feed_content li{
@@ -172,18 +173,19 @@ body {
 }
 .news_feed_content_c1{
     float:left;
-    width:20%;
+    width:25%;
 }
 .news_feed_content_c1r1{
 
 }
 .news_feed_content_c2{
     float:left;
-    width:60%;
+    width:50%;
 }
 .news_feed_content_c2r1{
     color:#990099;
     text-shadow:none;
+    text-decoration:none;
     font-size:13px;
     font-weight:bold;
 }
@@ -191,11 +193,13 @@ body {
     margin-top:3px;
     color:#fff;
     text-shadow:none;
+    text-decoration:none;
     font-size:11px;
     padding-bottom:10px;
 }
 .news_feed_content_c2r3{
     font-size:10px;
+    text-decoration:none;
     color:#000;
     
 }
@@ -207,10 +211,12 @@ body {
     font-size:9px;
     color:#000;
     text-align:center;
+    text-decoration:none;
     padding-bottom:2px;
 }
 .news_feed_content_c3r2{
     text-align:center;
+    text-decoration:none;
 }
 .news_feed_content_seperator{
     padding-top:5px;
@@ -232,11 +238,12 @@ body {
 
 /* PostDetails Page */
 .post_detail_container{
-    width:90%;
+    width:100%;
     margin:0 auto;
     margin-top:15px;
     padding-top: 20px;
     padding-bottom: 20px;
+    padding-left:5px;
 }
 
 .post_detail_container_details_c1{
@@ -244,7 +251,7 @@ body {
     float:left;
 }
 .post_detail_container_details_c2{
-    padding-left:20px;
+    padding-left:10px;
     width:55%;
     float:left;
     text-shadow:none;
@@ -337,7 +344,7 @@ body {
 }
 .comment_container_new_comment input{
     margin-left:50px;
-    width:250px;
+    width:120PX;
     height:30px;
 }
 .comment_container_comment{
@@ -387,8 +394,13 @@ body {
 .myposts_content{
     width:100%;
 }
+.myposts_content_container_outer ul{
+    padding-left:5px;
+    padding-top:10px;
+}
 .myposts_content_li{
     list-style:none;
+    padding-top:0px;
 }
 .myposts_content li{
     list-style-type: none;
@@ -396,7 +408,7 @@ body {
 }
 .myposts_content_c1{
     float:left;
-    width:20%;
+    width:25%;
 }
 .myposts_content_c1r1{}
 .myposts_content_c2{
