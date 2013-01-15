@@ -33,7 +33,7 @@ function displayAllPosts(data){
 		}
 		var shared_pic = data[i].picture_url;
 		var post_time = data[i].created_at;
-		var user_image = "https://graph.facebook.com/"+data[i].poster_fb_id+"/picture";
+		var user_image = "https://graph.facebook.com/"+data[i].poster_fb_id+"/picture?type=large";
 		
 		var formatedTime = getDate(post_time);
 	  	formatedTime = getChangedDateView(formatedTime);
@@ -80,7 +80,7 @@ function showPostDetailPage(data){
 		}
 		var shared_pic = data.post.picture_url;
 		var post_time = data.post.created_at;
-		var user_image = "https://graph.facebook.com/"+data.post.poster_fb_id+"/picture";
+		var user_image = "https://graph.facebook.com/"+data.post.poster_fb_id+"/picture?type=large";
 		var formatedTime = getDate(post_time);
 	  	formatedTime = getChangedDateView(formatedTime);
 	   	formatedTime = formatedTime.split(",")[1];
@@ -93,6 +93,10 @@ function showPostDetailPage(data){
 		mhtml+='</div><div class="post_detail_container_details_c3">'+post_time+'</div>';
 		$(".post_detail_container_details").html(mhtml);
 		if(shared_pic!=null){
+			if(shared_pic.contains("_s.")){
+				var big_img = shared_pic.split("_s.");
+				shared_pic = big_img[0]+"_b."+big_img[1];
+			}
 			$('.post_detail_container_image').html('<img src="'+shared_pic+'">');
 		}else{
 			$('.post_detail_container_image').html("");
