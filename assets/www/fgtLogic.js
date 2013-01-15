@@ -67,10 +67,57 @@ function displayAllPosts(data){
 $('.news_feed_content_li').live('click',function(e){
 	var post_id = $(this).attr('id');
 	var url = domainName+'/post_detail.json?facebook_id='+window.localStorage.getItem("facebook_id")+'&post_id='+post_id;
-	$.getJSON(url,function(data){
-		alert(JSON.stringify(data));
-	});
+	$.getJSON(url,showPostDetailPage);
 });
+
+function showPostDetailPage(data){
+	window.location.href = "#photodetail";
+	if(data!=null||data!=""){
+		var mhtml = "";
+		var post_text = data.post.text;
+		if(post_text==null||post_text==""||data.post.status_type=="approved_friend"){
+			post_text = data.post.story;
+		}
+		var shared_pic = data.post.picture_url;
+		var post_time = data.post.created_at;
+		var user_image = "https://graph.facebook.com/"+data.post.poster_fb_id+"/picture";
+		var formatedTime = getDate(post_time);
+	  	formatedTime = getChangedDateView(formatedTime);
+	   	formatedTime = formatedTime.split(",")[1];
+	   	post_time = formatedTime+", "+getTimeFormatted(getTime(post_time));
+		mhtml+='<div class="post_detail_container_details_c1">';
+		mhtml+='<img src="'+user_image+'"></div>';
+		mhtml+='<div class="post_detail_container_details_c2">';
+		mhtml+='<div class="post_detail_container_details_c2r1">'+data.post.poster_name+'</div>';
+		mhtml+='<div class="post_detail_container_details_c2r2">'+post_text+'</div>';
+		mhtml+='</div><div class="post_detail_container_details_c3">'+post_time+'</div>';
+		$(".post_detail_container_details").html(mhtml);
+		if(shared_pic!=null){
+			$('.post_detail_container_image').html('<img src="'+shared_pic+'">');
+		}else{
+			$('.post_detail_container_image').html("");
+		}
+		var total_comments = data.post.total_comments;
+		$('.post_detail_like_count').html(data.post.total_likes);
+		$('.post_detail_comment_count').html(total_comments);
+		$('.comments_count').html(total_comments+" of "+total_comments);
+		mhtml = "";
+		for(var i=0; i<data.post_comments.length; i++){
+			mhtml+='<div class="comment_container" id="'+data.post_comments[i].comment_fb_id+'">';
+			mhtml+='<div class="comment_container_image">';
+			mhtml+='<img src="https://graph.facebook.com/'+data.post_comments[i].commenter_fb_id+'/picture"></div>';
+			mhtml+='<div class="comment_container_comment">';
+			mhtml+='<div class="comment_body">';
+			mhtml+='<span class="comment_user_name">'+data.post_comments[i].commenter_name+'</span>'+data.post_comments[i].text+'</div>';
+			mhtml+='<div class="comment_options">';
+			mhtml+='<span class="comment_option_time"> 11 minutes ago </span>';
+			mhtml+='<span class="comment_option_like"> <a href="#"> Like </a> </span></div></div>';
+			mhtml+='<div class="clr"></div></div>';
+		}
+		$('.comments_container').html(mhtml);
+		$('.new_com_sub img').attr("src", "https://graph.facebook.com/"+window.localStorage.getItem("facebook_id")+"/picture");
+	}
+}
 
 /*
 function tables(tx){
