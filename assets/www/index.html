@@ -25,7 +25,8 @@
    <script type="text/javascript" src="fgtLogic.js"></script>
    <script type="text/javascript">
 	function onDeviceReady(){
-		//alert("device is ready");
+		// alert("device is ready");
+		startProcessing();
 	    if (window.localStorage.getItem("loginStatus") == "loggedin") {
 			startProcessing();
 	    }
@@ -54,28 +55,28 @@
            <div class="clr"></div>
            <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
                <ul>
-                   <li class="nav_upper_selected">
+                   <li class="nav_upper_selected tab1">
                        <a href="#newsfeed" data-transition="fade">
                            News Feed
                        </a>
                    </li>
-                  <li class="leaf">
+                  <li class="leaf tab2">
                      <a href="#myposts" data-transition="fade">
                         My Posts
                      </a>
                   </li>
                   
-                   <li class="leaf">
+                   <li class="leaf tab3">
                        <a href="#photos" data-transition="fade">
                            Photos
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab4">
                        <a href="#pages" data-transition="fade">
                            Pages
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab5">
                        <a href="#settings" data-transition="fade">
                            Settings
                        </a>
@@ -155,27 +156,27 @@
            <div class="clr"></div>
            <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
                <ul>
-                   <li class="nav_upper_selected">
+                   <li class="nav_upper_selected tab1">
                        <a href="#newsfeed" data-transition="fade">
                            News Feed
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab2">
                        <a href="#myposts" data-transition="fade">
                            My Posts
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab3">
                        <a href="#photos" data-transition="fade">
                            Photos
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab4">
                        <a href="#pages" data-transition="fade">
                            Pages
                        </a>
                    </li>
-                   <li class="leaf">
+                   <li class="leaf tab5">
                        <a href="#settings" data-transition="fade">
                            Settings
                        </a>
@@ -276,27 +277,27 @@
             
             <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
                 <ul>
-                    <li class="leaf">
+                    <li class="leaf tab1">
                         <a href="#newsfeed" data-transition="fade">
                             News Feed
                         </a>
                     </li>
-                    <li class="nav_upper_selected">
+                    <li class="nav_upper_selected tab2">
                         <a href="#myposts" data-transition="fade">
                             My Posts
                         </a>
                     </li>
-                    <li class="leaf">
+                    <li class="leaf tab3">
                         <a href="#photos" data-transition="fade">
                             Photos
                         </a>
                     </li>
-                    <li class="leaf">
+                    <li class="leaf tab4">
                         <a href="#pages" data-transition="fade">
                             Pages
                         </a>
                     </li>
-                    <li class="leaf">
+                    <li class="leaf tab5">
                         <a href="#settings" data-transition="fade">
                             Settings
                         </a>
@@ -322,72 +323,42 @@
         
         <div class="myposts_content_container_outer">
             <ul class="myposts_content_ul">
-                <a href="" data-transition="slide">
-                    <li class="myposts_content_li">
-                        <div class="myposts_content_seperator"></div>
-                        <div class="myposts_content_container">
-                            <div class="myposts_content_c1">
-                                <div class="myposts_content_c1r1">
-                                    <img src="images/jd.jpg">
-                                </div>
-                            </div>
-                            <div class="myposts_content_c2">
-                                <div class="myposts_content_c2r1">
-                                    Steve Oston
-                                </div>
-                                <div class="myposts_content_c2r2">
-                                    lsjdaf asdlkfj asdlkfj saldkfj slakdfj asldkfj asldkfj aldskfj asldkfj
-                                </div>
-                                <div class="myposts_content_c2r3">
-                                    <img src="images/like_btn.png"> 33 <img src="images/msg_btn.png"> 22
-                                </div>
-                            </div>
-                            <div class="myposts_content_c3">
-                                <div class="myposts_content_c3r1">
-                                    Dec 09, 9:23pm
-                                </div>
-                                <div class="myposts_content_c3r2">
-                                    <img src="images/potc.jpg">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clr"></div>
-                    </li>
-                </a>
-                <a href="" data-transition="slide">
-                    <li class="myposts_content_li">
-                        <div class="myposts_content_seperator">
-                            <img src="images/news_feed_seperator.png">
-                        </div>
-                        <div class="myposts_content_container">
-                            <div class="myposts_content_c1">
-                                <div class="myposts_content_c1r1">
-                                    <img src="images/jd.jpg">
-                                </div>
-                            </div>
-                            <div class="myposts_content_c2">
-                                <div class="myposts_content_c2r1">
-                                    Steve Oston
-                                </div>
-                                <div class="myposts_content_c2r2">
-                                    lsjdaf asdlkfj asdlkfj saldkfj slakdfj asldkfj asldkfj aldskfj asldkfj
-                                </div>
-                                <div class="myposts_content_c2r3">
-                                    <img src="images/like_btn.png"> 33 <img src="images/msg_btn.png"> 22
-                                </div>
-                            </div>
-                            <div class="myposts_content_c3">
-                                <div class="myposts_content_c3r1">
-                                    Dec 09, 9:23pm
-                                </div>
-                                <div class="myposts_content_c3r2">
-                                    <img src="images/potc.jpg">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clr"></div>
-                    </li>
-                </a>
+                
+                <a href="#photodetail" data-transition="slide">
+                       <li class="news_feed_content_li">
+                          
+                           <div class="news_feed_content_container">
+                               <div class="news_feed_content_c1">
+                                   <div class="news_feed_content_c1r1">
+                                       <img src="images/jd.jpg">
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c2">
+                                   <div class="news_feed_content_c2r1">
+                                       Steve Oston
+                                   </div>
+                                   <div class="news_feed_content_c2r2">
+                                       lsjdaf asdlkfj asdlkfj saldkfj slakdfj asldkfj asldkfj aldskfj asldkfj
+                                   </div>
+                                   <div class="news_feed_content_c2r3">
+                                       <img src="images/like_btn.png"> 33 <img src="images/msg_btn.png"> 22
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c3">
+                                   <div class="news_feed_content_c3r1">
+                                       Dec 09, 9:23pm
+                                   </div>
+                                   <div class="news_feed_content_c3r2">
+                                       <img src="images/potc.jpg">
+                                   </div>
+                               </div>
+                           </div>
+                            <div class="news_feed_content_seperator">
+                                <img src="images/news_feed_seperator.png">
+                           </div>
+                           <div class="clr"></div>
+                       </li>
+                   </a>
             </ul>
         </div>
     </div>
