@@ -45,12 +45,20 @@ function displayAllPosts(data){
 	// alert("displayAllPosts");
 	var mhtml = '';
 	for(var i=0; i<data.length; i++){
-		var post_text = data[0].text;
+		var post_text = data[i].text;
 		if(post_text==null||post_text==""||data[i].status_type=="approved_friend"){
 			post_text = data[i].story;
+			if(post_text==null){
+				post_text = "";
+				console.log(post_text);
+				console.log(data[i].fb_post_id);
+				console.log(data[i].id);
+				console.log(data[i].picture_url);
+			}
+				
 		}
 		var shared_pic = data[i].picture_url;
-		var post_time = data[i].created_at;
+		var post_time = data[i].post_time;
 		var user_image = "https://graph.facebook.com/"+data[i].poster_fb_id+"/picture?type=large";
 		
 		var formatedTime = getDate(post_time);
@@ -94,11 +102,13 @@ function showPostDetailPage(data){
 	if(data!=null||data!=""){
 		var mhtml = "";
 		var post_text = data.post.text;
-		if(post_text==null||post_text==""||data.post.status_type=="approved_friend"){
+		if(post_text==null||data.post.status_type=="approved_friend"){
 			post_text = data.post.story;
+			if(post_text==null)
+				post_text = "";
 		}
 		var shared_pic = data.post.picture_url;
-		var post_time = data.post.created_at;
+		var post_time = data.post.post_time;
 		var user_image = "https://graph.facebook.com/"+data.post.poster_fb_id+"/picture?type=large";
 		var formatedTime = getDate(post_time);
 	  	formatedTime = getChangedDateView(formatedTime);
@@ -153,12 +163,14 @@ function displayMyPosts(data){
 	// alert("displayMyPosts");
 	var mhtml = '';
 	for(var i=0; i<data.length; i++){
-		var post_text = data[0].text;
+		var post_text = data[i].text;
 		if(post_text==null||post_text==""||data[i].status_type=="approved_friend"){
 			post_text = data[i].story;
+			if(post_text==null)
+				post_text = "";
 		}
 		var shared_pic = data[i].picture_url;
-		var post_time = data[i].created_at;
+		var post_time = data[i].post_time;
 		var user_image = "https://graph.facebook.com/"+data[i].poster_fb_id+"/picture?type=large";
 		
 		var formatedTime = getDate(post_time);
