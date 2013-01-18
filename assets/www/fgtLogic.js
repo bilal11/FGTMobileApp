@@ -11,13 +11,13 @@ var myData;
 
 
 function startProcessing(){
-	window.localStorage.setItem("facebook_id","100000026248887");
-	//if(window.localStorage.getItem("loginStatus")=="loggedin"){
+	//window.localStorage.setItem("facebook_id","100000026248887");
+	if(window.localStorage.getItem("loginStatus")=="loggedin"){
 		window.location.href = "#newsfeed";
 		var url = domainName+'/get_all_posts.json?facebook_id='+window.localStorage.getItem("facebook_id");
 		console.log("url-------------"+url);
 		$.getJSON(url, displayAllPosts);
-	//}
+	}
 }
 
 var regular_update = setInterval(function(e){
@@ -136,9 +136,10 @@ function showPostDetailPage(data){
 		$('.comments_count').html(total_comments+" of "+total_comments);
 		mhtml = "";
 		for(var i=0; i<data.post_comments.length; i++){
+			var commenter_image = 'https://graph.facebook.com/'+data.post_comments[i].commenter_fb_id+'/picture';
 			mhtml+='<div class="comment_container" id="'+data.post_comments[i].comment_fb_id+'">';
 			mhtml+='<div class="comment_container_image">';
-			mhtml+='<img src="https://graph.facebook.com/'+data.post_comments[i].commenter_fb_id+'/picture"></div>';
+			mhtml+='<img src="'+commenter_image+'"></div>';
 			mhtml+='<div class="comment_container_comment">';
 			mhtml+='<div class="comment_body">';
 			mhtml+='<span class="comment_user_name">'+data.post_comments[i].commenter_name+'</span>'+data.post_comments[i].text+'</div>';
