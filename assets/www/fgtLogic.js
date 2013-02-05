@@ -31,7 +31,7 @@ var regular_update = setInterval(function(e){
 	});
 }, 1*60*1000);
 
-$("#facebook_connect").live("click", function(e){
+$("#fb_connect").live("click", function(e){
 //	authenticate();
 	authenticateIAB();
 });

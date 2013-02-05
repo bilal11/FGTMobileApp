@@ -18,9 +18,9 @@ function authenticateIAB(){
 
 
 function facebookLocChangedIAB(event){
-	alert("facebookLocChangedIAB");
+//	alert("facebookLocChangedIAB");
     if (event.url.indexOf("https://www.facebook.com/connect/login_success.html") > -1) {
-    	alert("reached");
+//    	alert("reached");
         var fbCode = event.url.match(/code=(.*)$/)[1]
         console.log('https://graph.facebook.com/oauth/access_token?client_id='+app_id+'&client_secret='+app_secret+'&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode);
 //       	$.support.cors = true;
