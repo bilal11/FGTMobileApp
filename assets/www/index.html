@@ -1,26 +1,19 @@
 <!DOCTYPE html> 
-<!-- 
-----   News Feed
----- Short Description
----- The following is used as the News Feed screen for the FGT Mobile App
-----                                                 coded by: Umer Hassam
----->
 <html> 
-   <head> 
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<head> 
+	<title>My Page</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.2.0.min.css"/>
+	
+	<link rel="stylesheet" href="css/mine2.css" />
+	<link rel="stylesheet" href="css/mine320.css" />
+	<script src="includes/jquery.js"></script>
+   	<script src="includes/jquery.mobile-1.2.0.min.js"></script>
 
-   <title> </title> 
-
-   <link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.2.0.css"/>
-   <link rel="stylesheet"  href="css/styles.css"/>
-   
-
-   <script src="includes/jquery.js"></script>
-   <script src="includes/jquery.mobile-1.2.0.min.js"></script>
-
-   <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-   <script type="text/javascript" src="childbrowser_and.js" charset="utf-8"></script>
+   <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+    <script type="text/javascript" src="inAppBrowser.js"></script>
    <script type="text/javascript" src="fbAuthenticator.js"></script>
    <script type="text/javascript" src="fgtLogic.js"></script>
    <script type="text/javascript">
@@ -29,85 +22,66 @@
 		// startProcessing();
 	    if (window.localStorage.getItem("loginStatus") == "loggedin") {
 			startProcessing();
+	    }else{
+	    	alert("else");
 	    }
+
 	}
 	document.addEventListener('deviceready', onDeviceReady(), false);	
    </script>
-</head>
-<body style='background: url("images/main_bg.png") no-repeat fixed left top transparent;'>
-	<div data-role="page" id="page0">
-    		<div id="facebook_connect"><a href="#"><font size="8"></>Connect with Facebook</font></a></div>
-    	</div>      
-	<div data-role="page" id="newsfeed">
-         <div class="header_container">
-            <div class="main_header" style="background-image: url('images/header_bg.png');">
-               <a data-theme="" href="#page2" class="msg_button">
-                   <img src="images/msg_btn.png" />
-               </a>
-               <div class="msg_circle" style="background-image: url('images/msg_circle.png');"> 55 </div>
-               
-               <div class="like_count"> 33 </div>
-               <a href="#page1" class="like_button">
-                   <img src="images/like_btn.png" />
-               </a>
-               
-           </div>
-           <div class="clr"></div>
-           <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
-               <ul>
-                   <li class="nav_upper_selected tab1">
-                       <a href="#newsfeed" data-transition="fade">
-                           News Feed
-                       </a>
-                   </li>
-                  <li class="leaf tab2">
-                     <a href="#myposts" data-transition="fade">
-                        My Posts
-                     </a>
-                  </li>
-                  
-                   <li class="leaf tab3">
-                       <a href="#photos" data-transition="fade">
-                           Photos
-                       </a>
-                   </li>
-                   <li class="leaf tab4">
-                       <a href="#pages" data-transition="fade">
-                           Pages
-                       </a>
-                   </li>
-                   <li class="leaf tab5">
-                       <a href="#settings" data-transition="fade">
-                           Settings
-                       </a>
-                   </li>
-               </ul>
-           </div>
-           <div class="clr"></div>
-           <div class="nav_menu_mid" style="background-image:url('images/nav_menu_mid_bg.png');">
-               <a href="#page1" class="right_links">
-                    <img src="images/camera.png">
-                </a>
-                <a href="#page1" class="right_links">
-                    <img src="images/pencil.png">
-                </a>
-           </div>
-           <div class="clr"></div>
-         </div> <!--- Headers End Here -->
-         <div class="clr"></div>
-         <div class="news_feed_content_container_outer">
+	
+	
+	
+</head> 
+<body style='background: url(Images/mainbg.png) no-repeat fixed left top transparent;'> 
+
+<div data-role="page" id="newsfeed">
+<div data-role="header" id="newsfeed_header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class="newsFeedTab selected"><a href="#" data-transition="fade">News Feed</a></li>
+			<li class="myPostTab"><a href="#my_posts" data-transition="fade">My Posts</a></li>
+			<li class="photosTab"><a href="#photos" data-transition="fade">Photos</a></li>
+			<li class="pagesTab"><a href="#pages">Pages</a></li>
+			<li class="settingTab"><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	
+	<div class="header3">
+		<div class="Image_container"><a href="#"><img src="Images/camera.png" alt="Image" class="camera"></a>
+		<a href="#"><img src="Images/pencil.png" alt="Image" class="pencil"></a></div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+</div><!-- header container end-->
+</div><!-- newsfeed_header end-->
+
+<div data-role="content">
+<div class="news_feed_content_container_outer">
+
+	<div class="post_field"><input type="text" style="display:none"></div>
             <div class="news_feed_content">
                <ul class="news_feed_content_ul">
-                   
-                   <a href="#photodetail" data-transition="slide">
+
+		  <a href="#post_detail" data-transition="slide">
                        <li class="news_feed_content_li">
-                           <div class="news_feed_content_seperator">
-                                <img src="images/news_feed_seperator.png">
-                           </div>
                            <div class="news_feed_content_container">
                                <div class="news_feed_content_c1">
                                    <div class="news_feed_content_c1r1">
-                                       <img src="images/jd.jpg">
+                                       <img src="Images/user_image1_against_Feed.png">
                                    </div>
                                </div>
                                <div class="news_feed_content_c2">
@@ -115,10 +89,10 @@
                                        Steve Oston
                                    </div>
                                    <div class="news_feed_content_c2r2">
-                                       lsjdaf asdlkfj asdlkfj saldkfj slakdfj asldkfj asldkfj aldskfj asldkfj
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
                                    </div>
                                    <div class="news_feed_content_c2r3">
-                                       <img src="images/like_btn.png"> 33 <img src="images/msg_btn.png"> 22
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
                                    </div>
                                </div>
                                <div class="news_feed_content_c3">
@@ -126,109 +100,219 @@
                                        Dec 09, 9:23pm
                                    </div>
                                    <div class="news_feed_content_c3r2">
-                                       <img src="images/potc.jpg">
+                                       <img src="Images/album1.png">
                                    </div>
                                </div>
                            </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
                            <div class="clr"></div>
                        </li>
                    </a>
+
+		  <a href="#post_detail" data-transition="slide">
+                       <li class="news_feed_content_li">
+                           <div class="news_feed_content_container">
+                               <div class="news_feed_content_c1">
+                                   <div class="news_feed_content_c1r1">
+                                       <img src="Images/user_image1_against_Feed.png">
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c2">
+                                   <div class="news_feed_content_c2r1">
+                                       Steve Oston
+                                   </div>
+                                   <div class="news_feed_content_c2r2">
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
+                                   </div>
+                                   <div class="news_feed_content_c2r3">
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c3">
+                                   <div class="news_feed_content_c3r1">
+                                       Dec 09, 9:23pm
+                                   </div>
+                                   <div class="news_feed_content_c3r2">
+                                       <img src="Images/album1.png">
+                                   </div>
+                               </div>
+                           </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
+                           <div class="clr"></div>
+                       </li>
+                   </a>
+
+		  <a href="#post_detail" data-transition="slide">
+                       <li class="news_feed_content_li">
+                           <div class="news_feed_content_container">
+                               <div class="news_feed_content_c1">
+                                   <div class="news_feed_content_c1r1">
+                                       <img src="Images/user_image1_against_Feed.png">
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c2">
+                                   <div class="news_feed_content_c2r1">
+                                       Steve Oston
+                                   </div>
+                                   <div class="news_feed_content_c2r2">
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
+                                   </div>
+                                   <div class="news_feed_content_c2r3">
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c3">
+                                   <div class="news_feed_content_c3r1">
+                                       Dec 09, 9:23pm
+                                   </div>
+                                   <div class="news_feed_content_c3r2">
+                                       <img src="Images/album1.png">
+                                   </div>
+                               </div>
+                           </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
+                           <div class="clr"></div>
+                       </li>
+                   </a>
+
+		  <a href="#post_detail" data-transition="slide">
+                       <li class="news_feed_content_li">
+                           <div class="news_feed_content_container">
+                               <div class="news_feed_content_c1">
+                                   <div class="news_feed_content_c1r1">
+                                       <img src="Images/user_image1_against_Feed.png">
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c2">
+                                   <div class="news_feed_content_c2r1">
+                                       Steve Oston
+                                   </div>
+                                   <div class="news_feed_content_c2r2">
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
+                                   </div>
+                                   <div class="news_feed_content_c2r3">
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c3">
+                                   <div class="news_feed_content_c3r1">
+                                       Dec 09, 9:23pm
+                                   </div>
+                                   <div class="news_feed_content_c3r2">
+                                       <img src="Images/album1.png">
+                                   </div>
+                               </div>
+                           </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
+                           <div class="clr"></div>
+                       </li>
+                   </a>
+                   
                </ul>
             </div>
          </div>
-    </div>
-    
-    <!--- PhotoDetails Page --->
-    <div data-role="page" id="photodetail">
-        <div class="header_container">
-            <div class="main_header" style="background-image: url('images/header_bg.png');">
-               <a data-theme="" href="#page2" class="msg_button">
-                   <img src="images/msg_btn.png" />
-               </a>
-               <div class="msg_circle" style="background-image: url('images/msg_circle.png');"> 55 </div>
-               
-               <div class="like_count"> 33 </div>
-               <a href="#page1" class="like_button">
-                   <img src="images/like_btn.png" />
-               </a>
-               
-           </div>
-           <div class="clr"></div>
-           <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
-               <ul>
-                   <li class="nav_upper_selected tab1">
-                       <a href="#newsfeed" data-transition="fade">
-                           News Feed
-                       </a>
-                   </li>
-                   <li class="leaf tab2">
-                       <a href="#myposts" data-transition="fade">
-                           My Posts
-                       </a>
-                   </li>
-                   <li class="leaf tab3">
-                       <a href="#photos" data-transition="fade">
-                           Photos
-                       </a>
-                   </li>
-                   <li class="leaf tab4">
-                       <a href="#pages" data-transition="fade">
-                           Pages
-                       </a>
-                   </li>
-                   <li class="leaf tab5">
-                       <a href="#settings" data-transition="fade">
-                           Settings
-                       </a>
-                   </li>
-               </ul>
-           </div>
-           <div class="clr"></div>
-           <div class="nav_menu_mid" style="background-image:url('images/nav_menu_mid_bg.png');">
-               <a href="#page1" class="right_links">
-                    <img src="images/camera.png">
-                </a>
-                <a href="#page1" class="right_links">
-                    <img src="images/pencil.png">
-                </a>
-           </div>
-           <div class="clr"></div>
-         </div> <!--- Headers End Here -->
-         <div class="clr"></div>
-         <div class="news_feed_content_container_outer">
+</div><!-- end data-role=content div-->
+</div><!-- newsfeed page end-->
+
+
+<!-- post_detail page -->
+<div data-role="page" id="post_detail">
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class="selected"><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class=""><a href="#my_posts" data-transition="fade">My Posts</a></li>
+			<li class=""><a href="#photos" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	
+</div><!-- header container end-->
+</div><!-- data-role=header end-->
+
+<div data-role="content">
+
+ 
             <div class="post_detail_container">
                 <div class="post_detail_container_details">
-                    
+                    <div class="post_detail_container_details_c1">
+                        <img src="Images/user_image1_against_Feed.png">
+                    </div>
+                    <div class="post_detail_container_details_c2">
+                        <div class="post_detail_container_details_c2r1">
+                            steve Orison
+                        </div>
+                        <div class="post_detail_container_details_c2r2">
+                            Hello today, how are you all, leave a comment below if you like the post
+                        </div>
+                    </div>
+                    <div class="post_detail_container_details_c3">
+                        Dec 9, 9:30pm
+                    </div>
                 </div>
                 <div class="clr"></div>
                 <div class="post_detail_container_image">
-                    <img src="">
+                    <img src="Images/shared_pic.png">
                 </div>
                 <div class="clr"></div>
                 <div class="post_detail_container_options">
-                    Like <span class="post_detail_like_count"> 0 </span>
+                    Like <span class="post_detail_like_count"> 33 </span>
                     <br>
-                    Comment <span class="post_detail_comment_count"> 0 </span>
+                    Comment <span class="post_detail_comment_count"> 55 </span>
                 </div>
                 <div class="clr"></div>
                 <div class="post_detail_container_comments">
                     <div class="post_detail_comment_container">
                         <div class="prev_container">
-                            <img src="images\comment_symble.png" width="20px" height="15px"> 
+                            <img src="Images\comment.png" width="20px" height="15px"> 
                             <a href="#">comments</a>
-                            <span class="comments_count"> 0 of 0 </span>
+                            <span class="comments_count"> 3 of 34 </span>
                             <div class="clr"></div>
                             
                         </div>
                         <div class="clr"></div>
-                        <div class="comments_container">
+                        <div class="comment_container" id="comment01">
+                            <div class="comment_container_image">
+                                <img src="images/jd.jpg">
+                            </div>
+                            <div class="comment_container_comment">
+                                <div class="comment_body">
+                                    <span class="comment_user_name">Someone</span> This is a great image
+                                </div>
+                                <div class="comment_options">
+                                    <span class="comment_option_time"> 11 minutes ago </span>
+                                    <span class="comment_option_like"> <a href="#"> Like </a> </span>
+                                </div>
+                            </div>
+                            
+                            <div class="clr"></div>
+                        </div>
                         <div class="comment_container" id="comment02">
                             <div class="comment_container_image">
                                 <img src="images/jd.jpg">
                             </div>
                             <div class="comment_container_comment">
                                 <div class="comment_body">
-                                    <span class="comment_user_name">Nobody</span> Another wonderful comment
+                                    <span class="comment_user_name">Nobody</span> Another wonderful comment. A very very very long comment is this.
                                 </div>
                                 <div class="comment_options">
                                     <span class="comment_option_time"> 11 minutes ago </span>
@@ -237,7 +321,6 @@
                             </div>
                             <div class="clr"></div>
                         </div>
-                		</div>
                         <div class="comment_container_new_comment">
                             <div class="comment_container_image">
                                 <div class="new_com_sub">
@@ -252,85 +335,68 @@
                         <div class="clr"></div>
                     </div>
                 </div>
+            </div>
+         </div>
+         </div>
+       
 
-            </div>
-         </div>
-         </div>
-         </div>
-    </div>
-    <!--- MyPosts Page --->
-    <div data-role="page" id="myposts">
-        <div class="header_container">
-            <div class="main_header" style="background-image: url('images/header_bg.png');">
-                <a data-theme="" href="#page2" class="msg_button">
-                    <img src="images/msg_btn.png" />
-                </a>
-                <div class="msg_circle" style="background-image: url('images/msg_circle.png');"> 55 </div>
-               
-                <div class="like_count"> 33 </div>
-                <a href="#page1" class="like_button">
-                    <img src="images/like_btn.png" />
-                </a>
-               
-            </div>
-            <div class="clr"></div>
-            
-            <div data-iconpos="top" class="nav_bar_upper" style="background-image: url('images/nav_menu_bg.png')">
-                <ul>
-                    <li class="leaf tab1">
-                        <a href="#newsfeed" data-transition="fade">
-                            News Feed
-                        </a>
-                    </li>
-                    <li class="nav_upper_selected tab2">
-                        <a href="#myposts" data-transition="fade">
-                            My Posts
-                        </a>
-                    </li>
-                    <li class="leaf tab3">
-                        <a href="#photos" data-transition="fade">
-                            Photos
-                        </a>
-                    </li>
-                    <li class="leaf tab4">
-                        <a href="#pages" data-transition="fade">
-                            Pages
-                        </a>
-                    </li>
-                    <li class="leaf tab5">
-                        <a href="#settings" data-transition="fade">
-                            Settings
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="clr"></div>
-            
-            <div class="nav_menu_mid" style="background-image:url('images/nav_menu_mid_bg.png');">
-                <b> <a href="#" class="left_links"> posts </a> </b>
-                <a href="#" class="left_links" style="margin-left: 100px;text-decoration: none;font-weight: normal;"> Events </a>
-                
-                <a href="#page1" class="right_links">
-                    <img src="images/camera.png">
-                </a>
-                <a href="#page1" class="right_links">
-                    <img src="images/pencil.png">
-                </a>
-            </div>
-            <div class="clr"></div>
-        </div> <!--- Headers End Here -->
-        <div class="clr"></div>
-        
-        <div class="myposts_content_container_outer">
-            <ul class="myposts_content_ul">
-                
-                <a href="#photodetail" data-transition="slide">
+</div><!-- data-rol=content end-->
+
+</div><!-- post_detail page end-->
+
+
+<!-- my posts tab posts page start -->
+<div data-role="page" id="my_posts">
+
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class="selected"><a href="#" data-transition="fade">My Posts</a></li>
+			<li class=""><a href="#photos" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	<div class="header3">
+		<div class="Image_container"><a href="#"><img src="Images/camera.png" alt="Image" class="camera"></a>
+		<a href="#"><img src="Images/pencil.png" alt="Image" class="pencil"></a></div>
+		<div class="header3_links">
+		<span><a href="#" class="selected">Posts</a></span>
+		<span><a href="#my_posts_events" class="" data-transition="flip">Events</a></span>
+		
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+
+</div><!-- header container end-->
+</div><!-- data-role=header end-->
+
+<div data-role="content">
+<div class="news_feed_content_container_outer">
+            <div class="news_feed_content">
+               <ul class="news_feed_content_ul">
+
+		  <a href="#post_detail" data-transition="slide">
                        <li class="news_feed_content_li">
-                          
                            <div class="news_feed_content_container">
                                <div class="news_feed_content_c1">
                                    <div class="news_feed_content_c1r1">
-                                       <img src="images/jd.jpg">
+                                       <img src="Images/user_image1_against_Feed.png">
                                    </div>
                                </div>
                                <div class="news_feed_content_c2">
@@ -338,10 +404,10 @@
                                        Steve Oston
                                    </div>
                                    <div class="news_feed_content_c2r2">
-                                       lsjdaf asdlkfj asdlkfj saldkfj slakdfj asldkfj asldkfj aldskfj asldkfj
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
                                    </div>
                                    <div class="news_feed_content_c2r3">
-                                       <img src="images/like_btn.png"> 33 <img src="images/msg_btn.png"> 22
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
                                    </div>
                                </div>
                                <div class="news_feed_content_c3">
@@ -353,14 +419,414 @@
                                    </div>
                                </div>
                            </div>
-                            <div class="news_feed_content_seperator">
-                                <img src="images/news_feed_seperator.png">
-                           </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
                            <div class="clr"></div>
                        </li>
                    </a>
-            </ul>
-        </div>
-    </div>
-<body>
+                   
+               </ul>
+            </div>
+         </div>
+</div><!-- end data-role=content div-->
+
+</div><!-- my_posts tab post page end-->
+
+<!-- my posts tab events page start -->
+<div data-role="page" id="my_posts_events">
+
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class="selected"><a href="#" data-transition="fade">My Posts</a></li>
+			<li class=""><a href="#photos" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	<div class="header3">
+		<div class="Image_container">
+		<a href="#"><img src="Images/pencil.png" alt="Image" class="pencil"></a></div>
+		<div class="header3_links">
+		<span><a href="#my_posts" class="" data-transition="flip">Posts</a></span>
+		<span><a href="#" class="selected">Events</a></span>
+		
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+
+</div><!-- header container end-->
+<div class="clr"></div>
+</div><!-- data-role=header end-->
+<div data-role="content">
+<div class="events_wrapper">
+<ul>
+	<li class=""><a href="#events_detail"><div class="top_container">
+	<div class="date_bar">December 26, 2012</div><div class="clr"></div>
+	<div class="contents_container"><div class="events_contents_col1"><img src="Images/user_image_against_Feed.png" alt="Image">User Name</div>
+	<div class="events_contents_col2">
+		<div class="events_contents_col2_row1">New Year Party</div>
+		<div class="events_contents_col2_row2">12:00 PM - 4:00 AM</div>
+		<div class="events_contents_col2_row3">New Jersey USA</div>
+	</div><div class="clr"></div></div></div>
+	</a>
+	</li>
+	
+	<li class=""><a href="#events_detail"><div class="top_container">
+	<div class="date_bar">December 26, 2012</div><div class="clr"></div>
+	<div class="contents_container"><div class="events_contents_col1"><img src="Images/user_image_against_Feed.png" alt="Image">User Name</div>
+	<div class="events_contents_col2">
+		<div class="events_contents_col2_row1">New Year Party</div>
+		<div class="events_contents_col2_row2">12:00 PM - 4:00 AM</div>
+		<div class="events_contents_col2_row3">New Jersey USA</div>
+	</div><div class="clr"></div></div></div>
+	</a>
+	</li>
+
+	<li class=""><a href="#events_detail"><div class="top_container">
+	
+	<div class="contents_container"><div class="events_contents_col1"><img src="Images/user_image_against_Feed.png" alt="Image">User Name</div>
+	<div class="events_contents_col2">
+		<div class="events_contents_col2_row1">New Year Party</div>
+		<div class="events_contents_col2_row2">12:00 PM - 4:00 AM</div>
+		<div class="events_contents_col2_row3">New Jersey USA</div>
+	</div><div class="clr"></div></div></div>
+	</a>
+	</li>
+
+</ul>
+</div><!-- events_wrapper end -->
+</div><!-- data-role=content end -->
+</div><!-- my_posts tab events page end-->
+
+<!-- events_detail page start-->
+<div data-role="page" id="events_detail">
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class="selected"><a href="#" data-transition="fade">My Posts</a></li>
+			<li class=""><a href="#photos" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	<div class="header3">
+		<div class="Image_container">
+		<a href="#"><img src="Images/pencil.png" alt="Image" class="pencil"></a></div>
+		<div class="header3_links">
+		<span><a href="#my_posts" class="" data-transition="flip">Posts</a></span>
+		<span><a href="#" class="selected">Events</a></span>
+		
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+	<div class="event_header">
+		<div class="top_container">
+		<div class="contents_container"><div class="events_contents_col1"><img src="Images/user_image_against_Feed.png" alt="Image"></div>
+		<div class="events_contents_col2">
+			<div class="events_contents_col2_row1">New Year Party</div>
+			<div class="events_contents_col2_row2">12:00 PM - 4:00 AM</div>
+			<div class="events_contents_col2_row3">New Jersey USA</div>
+		</div><div class="clr"></div></div></div>
+	</div><!-- event_header end -->
+	<div class="middle_header">
+		<div class="outer_box">
+			<div class="col"><a href="#" class="selected"><img src="Images/attending_button_active.png" alt=""><div class="header_text">Attending</div></a></div>
+			<div class="col"><a href="#" class=""><img src="Images/maybe_button_inactive.png" alt=""><div class="header_text">May be</div></a></div>
+			<div class="col"><a href="#" class=""><img src="Images/Declined_button_Inactive.png" alt=""><div class="header_text">Declined</div></a></div>
+		</div>	
+	</div>
+	<div class="clr"></div>
+</div><!-- header container end-->
+</div><!-- data-role=header end-->
+<div data-role="content">
+<div class="friends_wrapper_outer">
+	<div class="friends_count">Friends (06)</div>
+	<div class="friends_contents">
+	
+		<div class="friends_wrapper">
+			<div class="col1"><img src="Images/user_image1_against_Feed.png" alt=""></div>
+			<div class="col2">
+				<div class="row1">steve jhonson</div>
+				<div class="row2">(host)</div>
+			</div>
+		</div>
+		<div class="friends_wrapper">
+			<div class="col1"><img src="Images/user_image1_against_Feed.png" alt=""></div>
+			<div class="col2">
+				<div class="row1">steve jhonson</div>
+			</div>
+		</div>
+		<div class="friends_wrapper">
+			<div class="col1"><img src="Images/user_image1_against_Feed.png" alt=""></div>
+			<div class="col2">
+				<div class="row1">steve jhonson</div>
+			</div>
+		</div>
+
+	<div class="clr"></div>
+</div>
+</div><!-- data-role=content end -->
+</div><!-- events_detail page end-->
+
+
+<!-- photos tab posts page-->
+<div data-role="page" id="photos">
+
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class=""><a href="#my_posts" data-transition="fade">My Posts</a></li>
+			<li class="selected"><a href="#" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	
+	<div class="header3">
+		<div class="Image_container"><a href="#"><img src="Images/camera.png" alt="Image" class="camera"></a></div>
+		<div class="header3_links">
+		<span><a href="#" class="selected">Posts</a></span>
+		<span><a href="#photos_albums" class="" data-transition="flip">Albums</a></span>
+		
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+</div><!-- header container end-->
+</div><!-- photos_header end-->
+<div data-role="content">
+<div class="news_feed_content_container_outer">
+            <div class="news_feed_content">
+               <ul class="news_feed_content_ul">
+
+		  <a href="#post_detail" data-transition="slide">
+                       <li class="news_feed_content_li">
+                           <div class="news_feed_content_container">
+                               <div class="news_feed_content_c1">
+                                   <div class="news_feed_content_c1r1">
+                                       <img src="Images/user_image1_against_Feed.png">
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c2">
+                                   <div class="news_feed_content_c2r1">
+                                       Steve Oston
+                                   </div>
+                                   <div class="news_feed_content_c2r2">
+                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
+                                   </div>
+                                   <div class="news_feed_content_c2r3">
+                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
+                                   </div>
+                               </div>
+                               <div class="news_feed_content_c3">
+                                   <div class="news_feed_content_c3r1">
+                                       Dec 09, 9:23pm
+                                   </div>
+                                   <div class="news_feed_content_c3r2">
+                                       <img src="images/potc.jpg">
+                                   </div>
+                               </div>
+                           </div>
+			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
+                        </div>
+                           <div class="clr"></div>
+                       </li>
+                   </a>
+                   
+               </ul>
+            </div>
+         </div>
+</div><!-- end data-role=content div-->
+</div><!-- photos tab posts page end-->
+
+
+
+<!-- photos tab Album page-->
+<div data-role="page" id="photos_albums">
+
+<div data-role="header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class=""><a href="#my_posts" data-transition="fade">My Posts</a></li>
+			<li class="selected"><a href="#" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	
+	<div class="header3">
+		<div class="Image_container"><a href="#"><img src="Images/camera.png" alt="Image" class="camera"></a></div>
+		<div class="header3_links">
+		<span><a href="#photos" class="" data-transition="flip">Posts</a></span>
+		<span><a href="#" class="selected">Albums</a></span>
+		
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+</div><!-- header container end-->
+</div><!-- photos_header end-->
+
+<div data-role="content" class="photos_contents">
+	<ul>
+	<li class="albums_container">
+	
+		<a href="#album_detail_page"><img src="Images/album2.png" alt="Album Image"><div class="album_name">A very long name of album</div></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#album_detail_page"><img src="Images/album1.png" alt="Album Image"><div class="album_name">Album1</div></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#album_detail_page"><img src="Images/album1.png" alt="Album Image"><div class="album_name">Album1</div></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#album_detail_page"><img src="Images/album1.png" alt="Album Image"><div class="album_name">Album1</div></a>
+	</li>	
+	
+	</ul>
+</div><!-- /content -->
+</div><!-- photos tab album page end-->
+
+
+<div data-role="page" id="album_detail_page"><!-- photos tab album detail page start-->
+
+<div data-role="header" id="photos_header" data-position="fixed">
+<div class="header_container">
+	<div class="header1">
+		
+		<div class="message"><img src="Images/message_sign.png" alt="image" style="width:46px; height:26px;"><img src="Images/red_circle.png" alt="image" style="position: absolute;margin-left: -13px; width:18px; height:18px; margin-top:-4px;"><span class="msg_counter">55</span></div>		
+		
+		<div class="logo">Lance Logo goes here</div>
+		<div class="header_like"><img src="Images/likeImage.png" alt="image" style="width:32px"><span class="like_count">55</span></div>
+		<div class="clr"></div>		
+
+	</div><!-- header1 end-->
+	
+	<div class="header2">
+		<div class="nav_bar_upper">
+			<ul>
+			<li class=""><a href="#newsfeed" data-transition="fade">News Feed</a></li>
+			<li class=""><a href="#my_posts" data-transition="fade">My Posts</a></li>
+			<li class="selected"><a href="#" data-transition="fade">Photos</a></li>
+			<li class=""><a href="#pages">Pages</a></li>
+			<li class=""><a href="#setting">Setting</a></li>
+			</ul>
+		</div>
+		<div class="clr"></div>
+	</div><!-- header2 end-->
+	
+	<div class="header3">
+		<div class="Image_container"><a href="#"><img src="Images/camera.png" alt="Image" class="camera"></a></div>
+		<div class="header3_links">
+		<span><a href="#photos" class="" data-transition="fade">Posts</a></span>
+		<span><a href="#photos_albums" class="" data-transition="flip">Albums</a></span>
+		<div class="header3_album_name"><span style="margin-left: 3px;">>> <a href="#" class="selected">A very long name of album</a></span></div>
+		</div>
+	<div class="clr"></div>	
+	</div><!-- header3 end-->
+</div><!-- header container end-->
+</div><!-- photos_header end-->
+
+<div data-role="content" class="photos_contents">
+	<ul>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album2.png" alt="Album Image"></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>	
+
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>
+	<li class="albums_container">
+	
+		<a href="#"><img src="Images/album1.png" alt="Album Image"></a>
+	</li>	
+	
+	</ul>
+</div><!-- /content -->
+</div><!-- album_detail_page end-->
+
+
+
+</div>
+</body>
 </html>

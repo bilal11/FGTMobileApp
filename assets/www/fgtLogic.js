@@ -32,7 +32,8 @@ var regular_update = setInterval(function(e){
 }, 1*60*1000);
 
 $("#facebook_connect").live("click", function(e){
-	authenticate();
+//	authenticate();
+	authenticateIAB();
 });
 
 $(".tab1").live("click", function(e){
@@ -42,7 +43,6 @@ $(".tab1").live("click", function(e){
 });
 
 function displayAllPosts(data){
-	// alert("displayAllPosts");
 	var mhtml = '';
 	for(var i=0; i<data.length; i++){
 		var post_text = data[i].text;

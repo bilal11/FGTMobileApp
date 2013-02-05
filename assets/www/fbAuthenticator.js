@@ -63,7 +63,7 @@ function initialize_facebook(){
 		console.log("facebook_id = "+window.localStorage.getItem("facebook_id"));
 		console.log("user_name = "+window.localStorage.getItem("user_name"));
 		console.log("login Status = "+window.localStorage.getItem("loginStatus"));
-		var url = domainName+'/register_user.json?facebook_id='+window.localStorage.getItem("facebook_id")+'&userName='+window.localStorage.getItem("user_name")+'&fb_access_token='+window.localStorage.getItem("facebook_token");
+		var url = fbdomainName+'/register_user.json?facebook_id='+window.localStorage.getItem("facebook_id")+'&userName='+window.localStorage.getItem("user_name")+'&fb_access_token='+window.localStorage.getItem("facebook_token");
 		$.getJSON(url, function(data){
 			console.log(JSON.stringify(data));
 			if(data=='user created successfully'||data=='user already exists'){
