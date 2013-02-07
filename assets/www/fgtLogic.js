@@ -36,7 +36,7 @@ $("#fb_connect").live("click", function(e){
 	authenticateIAB();
 });
 
-$(".tab1").live("click", function(e){
+$(".newsFeedTab").live("click", function(e){
 	// window.location.href = "#newsfeed";
 	var url = domainName+'/get_all_posts.json?facebook_id='+window.localStorage.getItem("facebook_id");
 	$.getJSON(url, displayAllPosts);
@@ -44,6 +44,7 @@ $(".tab1").live("click", function(e){
 
 function displayAllPosts(data){
 	var mhtml = '';
+	alert(data);
 	for(var i=0; i<data.length; i++){
 		var post_text = data[i].text;
 		if(post_text==null||post_text==""||data[i].status_type=="approved_friend"){
@@ -153,7 +154,7 @@ function showPostDetailPage(data){
 	}
 }
 
-$(".tab2").live("click", function(e){
+$(".myPostTab").live("click", function(e){
 	var url = domainName+'/get_my_posts.json?facebook_id='+window.localStorage.getItem("facebook_id");
 	$.getJSON(url, displayMyPosts);
 });
@@ -161,7 +162,7 @@ $(".tab2").live("click", function(e){
 
 
 function displayMyPosts(data){
-	// alert("displayMyPosts");
+	 alert("displayMyPosts");
 	var mhtml = '';
 	for(var i=0; i<data.length; i++){
 		var post_text = data[i].text;
