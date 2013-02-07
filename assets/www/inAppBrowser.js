@@ -1,5 +1,5 @@
 var app_id = "455419371188015"; 
-var app_secret = "109cce03082a0e4191081df21a49";
+var app_secret = "109cce03082a0e4191081df21a498268";
 var ref = null;
 var fbDomainName;
 
@@ -28,7 +28,7 @@ function facebookLocChangedIAB(event){
             url: 'https://graph.facebook.com/oauth/access_token?client_id='+app_id+'&client_secret='+app_secret+'&redirect_uri=https://www.facebook.com/connect/login_success.html&code=' + fbCode,
             data: {},
             success: function(data, status){
-            	alert("success");
+            	console.log("success");
                 window.localStorage.setItem("facebook_token", data.split("=")[1]);
 				if(ref){
 					ref.close();
@@ -39,7 +39,7 @@ function facebookLocChangedIAB(event){
 				if(ref){
 					ref.close();
 				}
-				alert("in loc change error");
+				console.log("in loc change error "+JSON.stringify(error));
             },
             dataType: 'text',
             type: 'POST'
@@ -51,40 +51,17 @@ function initialize_facebookIAB(){
 	var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_token');
 	console.log("initialize_facebookIAB = "+url);
 	$.getJSON(url, function(data){
-		alert("my data received");
+		// alert("my data received");
 		window.localStorage.setItem("facebook_id", data.id);
 		window.localStorage.setItem("user_name", data.name);
 		window.localStorage.setItem("loginStatus", "loggedin");
-		window.localStorage.getItem("user_name");
-		var command = fbDomainName + "/facebook/connect.json?facebook_id=" + window.localStorage.getItem("facebook_id") + "&access_token=" + window.localStorage.getItem("facebook_token");
-		alert("command = "+command);
-		$.get(command, function(datam){
-			alert("connect request sent");
-			if (datam) {
-				alert(JSON.stringify(datam));
-				window.location.href = "#newsfeed";
-				startProcessing();
-			}
-		});
-	});
-}
-
-
-function initialize_facebookIAB(){
-	var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_token');
-	console.log("initialize_facebookIAB = "+url);
-	$.getJSON(url, function(data){
-		console.log("my data received");
-		window.localStorage.setItem("facebook_id", data.id);
-		window.localStorage.setItem("user_name", data.name);
-		window.localStorage.setItem("loginStatus", "loggedin");
-		window.localStorage.getItem("user_name");
-		var command = fbDomainName + "/facebook/connect.json?facebook_id=" + window.localStorage.getItem("facebook_id") + "&access_token=" + window.localStorage.getItem("facebook_token");
+		console.log(window.localStorage.getItem("user_name"));
+		var command = fbDomainName + "/register_user.json?userName="+window.localStorage.getItem("user_name")+"&facebook_id=" + window.localStorage.getItem("facebook_id") + "&fb_access_token=" + window.localStorage.getItem("facebook_token");
 		console.log("command = "+command);
 		$.getJSON(command, function(datam){
-			console.log("connect request sent");
+//			alert("connect request sent");
 			if (datam) {
-				console.log(JSON.stringify(datam));
+				alert(JSON.stringify(datam));
 				window.location.href = "#newsfeed";
 				startProcessing();
 			}
