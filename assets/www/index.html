@@ -14,7 +14,7 @@
 
    <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
     <script type="text/javascript" src="inAppBrowser.js"></script>
-   <script type="text/javascript" src="fbAuthenticator.js"></script>
+   
    <script type="text/javascript" src="fgtLogic.js"></script>
    <script type="text/javascript">
 	function onDeviceReady(){
@@ -22,9 +22,17 @@
 		// startProcessing();
 	    if (window.localStorage.getItem("loginStatus") == "loggedin") {
 			startProcessing();
-	    }else{
-	    	//alert("else");
 	    }
+	// var command = "http://morning-scrubland-4310.herokuapp.com/register_user.json?userName=Majik Man&facebook_id=100000331628597&access_token=AAAGeM5XX7y8BAA6hIaC0utDZBy2FejoZAsZCd7j8p2FfTSFPYf3ZCHWPvBx2M22deLi6ksEHMASoBod56V54wUSfZAKkJqkCyQZClPBiXoOgZDZD&expires";
+		// alert("command = "+command);
+		// $.getJSON(command, function(datam){
+			// alert("connect request sent");
+			// if (datam) {
+				// alert(JSON.stringify(datam));
+				// window.location.href = "#newsfeed";
+				// startProcessing();
+			// }
+		// });    
 
 	}
 	document.addEventListener('deviceready', onDeviceReady(), false);	
@@ -82,244 +90,6 @@
 	<div class="post_field"><input type="text" style="display:none"></div>
             <div class="news_feed_content">
                <ul class="news_feed_content_ul">
-
-		  <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-
-		  <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-                   
-                   <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-                   
-                   <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-                   
-                   <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-                   
-                   <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
-                   
-                   <a href="#post_detail" data-transition="slide">
-                       <li class="news_feed_content_li">
-                           <div class="news_feed_content_container">
-                               <div class="news_feed_content_c1">
-                                   <div class="news_feed_content_c1r1">
-                                       <img src="Images/user_image1_against_Feed.png">
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c2">
-                                   <div class="news_feed_content_c2r1">
-                                       Steve Oston
-                                   </div>
-                                   <div class="news_feed_content_c2r2">
-                                       Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post. Sample text for post.
-                                   </div>
-                                   <div class="news_feed_content_c2r3">
-                                       <img src="Images/likeImage.png"> 33 <img src="Images/comment.png"> 22
-                                   </div>
-                               </div>
-                               <div class="news_feed_content_c3">
-                                   <div class="news_feed_content_c3r1">
-                                       Dec 09, 9:23pm
-                                   </div>
-                                   <div class="news_feed_content_c3r2">
-                                       <img src="Images/album1.png">
-                                   </div>
-                               </div>
-                           </div>
-			<div class="news_feed_content_seperator"><img src="Images/content_separator.png">
-                        </div>
-                           <div class="clr"></div>
-                       </li>
-                   </a>
 
 		  <a href="#post_detail" data-transition="slide">
                        <li class="news_feed_content_li">
